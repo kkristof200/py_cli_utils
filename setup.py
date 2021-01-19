@@ -9,7 +9,7 @@ else:
 
 setuptools.setup(
     name="pypi_upgrade",
-    version="0.0.13",
+    version="0.0.14",
     author="Kristof",
     description="pypi_upgrade",
     long_description=long_description,
@@ -24,7 +24,7 @@ setuptools.setup(
     ],
     entry_points={
         'console_scripts': [
-            'do_main_thing=pypi_upgrade.cli:main'
+            'do_main_thing=pypi_upgrade.__main__:main'
         ]
     },
     python_requires='>=3.5',
