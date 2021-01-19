@@ -1,5 +1,5 @@
 import distutils, os
-from distutils import setup
+from distutils.core import setup
 
 readme_path = os.path.join(os.getcwd(), "README.md")
 if os.path.exists(readme_path):
@@ -10,7 +10,7 @@ else:
 
 setup(
     name="pypi_upgrade",
-    version="0.0.6",
+    version="0.0.7",
     author="Kristof",
     description="pypi_upgrade",
     long_description=long_description,
