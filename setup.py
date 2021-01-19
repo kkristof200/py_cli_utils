@@ -9,7 +9,7 @@ else:
 
 setuptools.setup(
     name="pypi_upgrade",
-    version="0.0.3",
+    version="0.0.4",
     author="Kristof",
     description="pypi_upgrade",
     long_description=long_description,
@@ -24,7 +24,7 @@ setuptools.setup(
     ],
     entry_points={
         'console_scripts': [
-            'aloha = pypi_upgrade/pypi_upgrade:hello'
+            'aloha = pypi_upgrade:hello'
         ]
     },
     python_requires='>=3.5',
