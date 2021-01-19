@@ -9,14 +9,14 @@ else:
 
 setuptools.setup(
     name="pypi_upgrade",
-    version="0.0.7",
+    version="0.0.12",
     author="Kristof",
     description="pypi_upgrade",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/kkristof200/pypi_upgrade",
     packages=setuptools.find_packages(),
-    install_requires=["click"],
+    install_requires=[""],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
@@ -24,7 +24,7 @@ setuptools.setup(
     ],
     entry_points={
         'console_scripts': [
-            'aloha = pypi_upgrade.pypi_upgrade:hello'
+            'do_main_thing=pypi_upgrade.cli:main'
         ]
     },
     python_requires='>=3.5',
