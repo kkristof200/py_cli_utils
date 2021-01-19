@@ -1,5 +1,5 @@
 import sys
 
-def main():
+def upgrade():
     print('doing the stuff I should be doing')
     print(sys.argv)

@@ -24,7 +24,7 @@ setuptools.setup(
     ],
     entry_points={
         'console_scripts': [
-            'do_main_thing=pypi_upgrade.__main__:main'
+            'do_main_thing=pypi_utils.__main__:upgrade'
         ]
     },
     python_requires='>=3.5',
