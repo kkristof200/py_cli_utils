@@ -9,7 +9,7 @@ else:
 
 setuptools.setup(
     name="pypi_upgrade",
-    version="0.0.12",
+    version="0.0.13",
     author="Kristof",
     description="pypi_upgrade",
     long_description=long_description,
