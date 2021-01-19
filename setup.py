@@ -1,5 +1,4 @@
 import setuptools, os
-from distutils.core import setup
 
 readme_path = os.path.join(os.getcwd(), "README.md")
 if os.path.exists(readme_path):
@@ -8,9 +7,9 @@ if os.path.exists(readme_path):
 else:
     long_description = 'pypi_upgrade'
 
-setup(
+setuptools.setup(
     name="pypi_upgrade",
-    version="0.0.8",
+    version="0.0.6",
     author="Kristof",
     description="pypi_upgrade",
     long_description=long_description,
@@ -23,6 +22,10 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    scripts=['pypi_upgrade/pypi_upgrade.py',],
+    entry_points={
+        'console_scripts': [
+            'aloha = pypi_upgrade.pypi_upgrade:hello'
+        ]
+    },
     python_requires='>=3.5',
 )
