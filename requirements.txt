@@ -1,0 +1,4 @@
+pipreqs==0.4.10
+selenium_facebook==0.1.8
+kcu==0.0.55
+bullet==2.2.0
