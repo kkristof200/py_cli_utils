@@ -84,8 +84,13 @@ class Flows:
             Utils.ensure_and_get_path()
 
         cls.upgrade(ensure_path=False, clean_lines=clean_lines)
+        current_package_name = Utils.get_current_package_name()
+
+        print('Publishing \'{}\' to pypi'.format(current_package_name))
         Utils.publish()
-        cls.reinstall(Utils.get_current_package_name())
+
+        print('Reinstalling \'{}\''.format(current_package_name))
+        cls.reinstall(current_package_name)
 
     @classmethod
     def publish_and_push(cls, message: Optional[str] = None, clean_lines: bool = True):
