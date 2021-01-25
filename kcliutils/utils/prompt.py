@@ -52,20 +52,20 @@ class Prompt:
         passed_package_name: Optional[str] = None,
         default_package_name: Optional[str] = None
     ) -> Tuple[str, str]:
-        get_package_description_prompt = (cls.__get_package_description_prompt(), str),
         # get_max_default_python_version_prompt = (cls.__get_max_default_python_version_prompt(), float)
 
         if passed_package_name:
-            package_name, description = cls.__prompt([
-                (cls.__get_package_name_prompt(default_package_name), str),
-                get_package_description_prompt,
-                # get_max_default_python_version_prompt
-            ])
-        else:
+            package_name = passed_package_name
             description = cls.__prompt([
-                get_package_description_prompt,
+                (cls.__get_package_description_prompt(), str)
                 # get_max_default_python_version_prompt
             ])[0]
+        else:
+            package_name, description = cls.__prompt([
+                (cls.__get_package_name_prompt(default_package_name), str),
+                (cls.__get_package_description_prompt(), str)
+                # get_max_default_python_version_prompt
+            ])
 
         return package_name, description#, max_v
 
@@ -86,9 +86,7 @@ class Prompt:
 
         cli = SlidePrompt(prompts)
         all_res = cli.launch()
-        print(all_res)
         all_res = [res[1] if not isinstance(res[1], tuple) else res[1][0] for res in all_res]
-        print(all_res)
         results = [res if isinstance(res, types[i]) else types[i](res) for i, res in enumerate(all_res)]
 
         if summarize:

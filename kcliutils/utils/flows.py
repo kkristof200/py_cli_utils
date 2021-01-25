@@ -30,8 +30,6 @@ class Flows:
     def new_package(cls, package_name: Optional[str]):
         input('Ensure you\'re in the correct path: \'{}\''.format(os.getcwd()))
 
-        res = Utils.get_args(0)
-        package_name = res[0] if res > 0 else None
         config = Utils.get_config(True)
         package_name, description = Prompt.new_package(package_name, os.getcwd().split(os.sep)[-1])
 
@@ -52,8 +50,9 @@ class Flows:
         if not os.path.exists(Utils.demo_path()):
             Utils.create_file(Utils.demo_path())
 
-        cls.create_new_subpackage(os.path.join(package_name, 'models'), create_class=True)
-        cls.create_new_subpackage(os.path.join(package_name, 'core'), create_class=True)
+        cls.create_new_subpackage(os.path.join(package_name, 'models'), create_class=False)
+        cls.create_new_subpackage(os.path.join(package_name, 'models/enums'), create_class=False)
+        cls.create_new_subpackage(os.path.join(package_name, 'utils'), create_class=True)
         cls.create_new_subpackage(package_name, create_class=True)
 
     @classmethod

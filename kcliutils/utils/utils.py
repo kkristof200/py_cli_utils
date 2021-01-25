@@ -87,7 +87,7 @@ class Utils:
     def get_args(minimum_needed: int = 1) -> List[str]:
         args = sys.argv[1:]
 
-        if len(args) < minimum_needed + 1:
+        if len(args) < minimum_needed:
             raise ValueError('Not enough args passed: {} out of {}'.format(len(args), minimum_needed))
 
         return args
