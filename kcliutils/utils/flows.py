@@ -162,9 +162,9 @@ class Flows:
         while True:
             current_try_count += 1
             res = Utils.pip('install -U {}'.format(package_name))
-            print(res)
 
             if not res.startswith('ERROR'):
+                print(res)
                 print('Successfully installed \'{}\''.format(package_name))
 
                 return
