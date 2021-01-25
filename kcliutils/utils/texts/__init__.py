@@ -3,7 +3,7 @@ from .class_ import new_class
 from .enum_ import new_enum
 from .license import new_license
 from .readme import new_readme, updated_readme
-from .setup import new_setup, updated_setup
+from .setup import new_setup, updated_setup, current_version_number
 from .install_dependencies import new_install_dependencies_file
 
 from .core_texts import file, flow, gitignore

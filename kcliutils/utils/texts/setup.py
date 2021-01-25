@@ -6,7 +6,7 @@ import os
 
 # Pip
 from kdependencies import InstalledPackage
-from kcu import strings
+from kcu import strings, strio
 
 # Local
 from .core_texts import setup
@@ -33,7 +33,7 @@ def updated_setup(
             print(e)
 
     try:
-        old_version_str = old_setup.split('version=')[-1].split('version =')[-1].split(',')[0].replace('"', '').replace("'", '')
+        old_version_str = __extract_current_version_number(old_setup)
 
         if old_version_str:
             old_setup = old_setup.replace(old_version_str, __bumped_version_number(old_version_str))
@@ -41,6 +41,15 @@ def updated_setup(
         print(e)
 
     return old_setup
+
+def current_version_number(setup_file_path: str) -> Optional[str]:
+    if not os.path.exists(setup_file_path):
+        return None
+
+    try:
+        return __extract_current_version_number(strio.load(setup_file_path))
+    except:
+        return None
 
 def new_setup(
     package_name: str,
@@ -69,6 +78,12 @@ def new_setup(
 
 
 # ----------------------------------------------------------- Private methods ------------------------------------------------------------ #
+
+def __extract_current_version_number(setup_file_str: str) -> Optional[str]:
+    try:
+        return setup_file_str.split('version=')[-1].split('version =')[-1].split(',')[0].replace('"', '').replace("'", '')
+    except:
+        return None
 
 def __get_python_classifiers(
     min_python_version: float,

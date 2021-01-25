@@ -2,7 +2,7 @@
 
 # System
 from typing import Optional, List
-import os
+import os, time
 
 # Pip
 from kcu import kpath, strio, sh
@@ -12,7 +12,7 @@ from kdependencies import Dependencies, InstalledPackage
 from .constants import Constants
 from .utils import Utils
 from .prompt import Prompt
-from .texts import new_api, new_class, new_enum, new_license, file, flow, gitignore, new_readme, updated_readme, new_setup, updated_setup, new_install_dependencies_file
+from .texts import new_api, new_class, new_enum, new_license, file, flow, gitignore, new_readme, updated_readme, new_setup, updated_setup, new_install_dependencies_file, current_version_number
 
 # ---------------------------------------------------------------------------------------------------------------------------------------- #
 
@@ -95,7 +95,7 @@ class Flows:
 
         if reinstall:
             print('Reinstalling \'{}\''.format(current_package_name))
-            cls.reinstall(current_package_name)
+            cls.reinstall(current_package_name, version=current_version_number(Utils.setup_file_path()), max_install_try_count=5)
 
     @classmethod
     def publish_and_push(cls, message: Optional[str] = None, clean_lines: bool = True):
@@ -104,7 +104,7 @@ class Flows:
 
         current_package_name = Utils.get_current_package_name()
         print('Reinstalling \'{}\''.format(current_package_name))
-        cls.reinstall(current_package_name)
+        cls.reinstall(current_package_name, version=current_version_number(Utils.setup_file_path()), max_install_try_count=5)
 
     @classmethod
     def clean_lines(cls, ensure_path: bool = True):
@@ -154,13 +154,28 @@ class Flows:
         print(Utils.pip('uninstall -y {}'.format(package)))
 
     @staticmethod
-    def install(package: str):
-        print(Utils.pip('install -U {}==0.0.6'.format(package)))
+    def install(package: str, version: Optional[str] = None, max_try_count: Optional[int] = None):
+        package_name = '{}{}'.format(package, '=={}'.format(version) if version else '')
+        max_try_count = max_try_count or 1
+        current_try_count = 0
+
+        while True:
+            current_try_count += 1
+            res = Utils.pip('install -U {}'.format(package_name))
+
+            if not res.startswith('ERROR'):
+                print('Successfully installed \'{}\''.format(package_name))
+            elif current_try_count < max_try_count:
+                time.sleep(2)
+            else:
+                break
+
+        print('ERROR: Could not install \'{}\''.format(package_name))
 
     @classmethod
-    def reinstall(cls, package: str):
+    def reinstall(cls, package: str, version: Optional[str] = None, max_install_try_count: Optional[int] = None):
         cls.uninstall(package)
-        cls.install(package)
+        cls.install(package, version, max_try_count=max_install_try_count)
 
 
     # New files
