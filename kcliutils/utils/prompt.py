@@ -9,7 +9,6 @@ from bullet import SlidePrompt, Bullet, Input, colors
 # Local
 from .constants import Constants
 
-
 # ---------------------------------------------------------------------------------------------------------------------------------------- #
 
 
@@ -23,34 +22,52 @@ class Prompt:
     @classmethod
     def min_default_python_version(cls) -> float:
         return cls.__prompt((cls.__get_min_default_python_version_prompt(), float))
-    
+
     @classmethod
     def max_default_python_version(cls) -> float:
         return cls.__prompt((cls.__get_max_default_python_version_prompt(), float))
 
     @classmethod
-    def username(cls, default_username: Optional[str] = None) -> Optional[str]:
-        return cls.__prompt((cls.__get_username_prompt(), str)) or default_username
+    def author(cls, default_username: Optional[str] = None) -> Optional[str]:
+        return cls.__prompt((cls.__get_author_prompt(), str)) or default_username
 
     @classmethod
-    def config(cls, default_username: Optional[str] = None) -> Tuple[Optional[str], float, float]:
-        username, min_v, max_v = cls.__prompt([
-            (cls.__get_username_prompt(), str),
+    def config(
+        cls,
+        default_author: Optional[str] = None,
+        default_git_message: Optional[str] = None
+    ) -> Tuple[Optional[str], float, float]:
+        author, git_message, min_v, max_v = cls.__prompt([
+            (cls.__get_author_prompt(default_author=default_author), str),
+            (cls.__get_default_git_message_prompt(default_message=default_git_message), str),
             (cls.__get_min_default_python_version_prompt(), float),
             (cls.__get_max_default_python_version_prompt(), float)
         ])
 
-        return username or default_username, min_v, max_v
+        return author or default_author, git_message or default_git_message, min_v, max_v
 
     @classmethod
-    def _config(cls, default_username: Optional[str] = None) -> Tuple[Optional[str], float, float]:
-        username, min_v, max_v = cls.__prompt([
-            (cls.__get_username_prompt(), str),
-            (cls.__get_min_default_python_version_prompt(), float),
-            (cls.__get_max_default_python_version_prompt(), float)
-        ])
+    def new_package(
+        cls,
+        passed_package_name: Optional[str] = None,
+        default_package_name: Optional[str] = None
+    ) -> Tuple[str, str]:
+        get_package_description_prompt = (cls.__get_package_description_prompt(), str),
+        # get_max_default_python_version_prompt = (cls.__get_max_default_python_version_prompt(), float)
 
-        return username or default_username, min_v, max_v
+        if passed_package_name:
+            package_name, description = cls.__prompt([
+                (cls.__get_package_name_prompt(default_package_name), str),
+                get_package_description_prompt,
+                # get_max_default_python_version_prompt
+            ])
+        else:
+            description = cls.__prompt([
+                get_package_description_prompt,
+                # get_max_default_python_version_prompt
+            ])[0]
+
+        return package_name, description#, max_v
 
 
     # ------------------------------------------------------- Private methods -------------------------------------------------------- #
@@ -63,12 +80,16 @@ class Prompt:
     ) -> Union[List[any], any]:
         if not isinstance(prompts_with_types, list):
             prompts_with_types = [prompts_with_types]
-        
+
         prompts = [p[0] for p in prompts_with_types]
         types = [p[1] for p in prompts_with_types]
 
         cli = SlidePrompt(prompts)
-        results = [res[0] if isinstance(res[0], types[i]) else types[i](res[0]) for i, res in enumerate(cli.launch())]
+        all_res = cli.launch()
+        print(all_res)
+        all_res = [res[1] if not isinstance(res[1], tuple) else res[1][0] for res in all_res]
+        print(all_res)
+        results = [res if isinstance(res, types[i]) else types[i](res) for i, res in enumerate(all_res)]
 
         if summarize:
             cli.summarize()
@@ -81,10 +102,10 @@ class Prompt:
     @staticmethod
     def __get_package_name_prompt(default_package_name: Optional[str] = None) -> Input:
         return Input(
-            "Enter package name (will be useed on pip when published): ",
+            "Enter package name (will be used on pip when published): ",
             default=default_package_name,
-            word_color=colors.foreground["yellow"],
-            pattern='.*'
+            word_color=colors.foreground["yellow"]#,
+            # pattern='.*'
         )
 
     @staticmethod
@@ -97,10 +118,19 @@ class Prompt:
         )
 
     @staticmethod
-    def __get_username_prompt(default_username: Optional[str] = None) -> Input:
+    def __get_author_prompt(default_author: Optional[str] = None) -> Input:
         return Input(
-            "Username (preferably git): ",
-            default=default_username,
+            "Default author to use for packages: ",
+            default=default_author,
+            word_color=colors.foreground["yellow"],
+            pattern='.*'
+        )
+
+    @staticmethod
+    def __get_default_git_message_prompt(default_message: Optional[str] = None) -> Input:
+        return Input(
+            "Default message to use for git commits: ",
+            default=default_message,
             word_color=colors.foreground["yellow"],
             pattern='.*'
         )

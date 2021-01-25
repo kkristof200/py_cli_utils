@@ -6,53 +6,97 @@ if os.path.exists(readme_path):
     with open(readme_path, "r") as f:
         long_description = f.read()
 else:
-    long_description = 'pypi_utils'
+    long_description = 'kcliutils'
 
 setuptools.setup(
-    name="pypi_utils",
-    version="0.0.0",
+    name="kcliutils",
+    version="0.0.2",
     author="Kristof",
-    description="pypi_utils",
+    description="kcliutils",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/kkristof200/pypi_upgrade",
+    url="https://github.com/kkristof200/py_cli_utils",
     packages=setuptools.find_packages(),
     install_requires=[],
     classifiers=[
-        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.4",
+        "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
     entry_points={
         'console_scripts': [
-            'new_python_package=pypi_utils.__main__:new_package',
-            'npp=pypi_utils.__main__:new_package',
+            # Main
 
-            'upgrade_python_package=pypi_utils.__main__:upgrade',
-            'upp=pypi_utils.__main__:upgrade',
+            'new_python_package=kcliutils.__main__:new_package',
+            'npp=kcliutils.__main__:new_package',
 
-            'publish_python_package=pypi_utils.__main__:publish',
-            'ppp=pypi_utils.__main__:publish',
+            'upgrade_python_package=kcliutils.__main__:upgrade',
+            'upp=kcliutils.__main__:upgrade',
 
-            'new_python_subpackage=pypi_utils.__main__:new_subpackage',
-            'npsp=pypi_utils.__main__:new_subpackage'
+            'publish_python_package=kcliutils.__main__:publish',
+            'ppp=kcliutils.__main__:publish',
 
-            'clean_python_package=pypi_utils.__main__:clean_lines',
-            'cpp=pypi_utils.__main__:clean_lines',
+            'publish_and_push_python_package=kcliutils.__main__:publish_and_push',
+            'pipush=kcliutils.__main__:publish_and_push',
+            'pppp=kcliutils.__main__:publish_and_push',
+
+            'clean_lines=kcliutils.__main__:clean_lines',
+            'cl=kcliutils.__main__:clean_lines',
 
 
-            'new_python_class=pypi_utils.__main__:new_class',
-            'npc=pypi_utils.__main__:new_class',
+            # Git
 
-            'new_python_enum=pypi_utils.__main__:new_enum',
-            'npe=pypi_utils.__main__:new_enum',
+            'push=kcliutils.__main__:push',
+            'psh=kcliutils.__main__:push',
 
-            'new_python_file=pypi_utils.__main__:new_file',
-            'npf=pypi_utils.__main__:new_file',
+            'fetch=kcliutils.__main__:fetch',
+            'ftch=kcliutils.__main__:fetch',
 
-            'new_python_flow=pypi_utils.__main__:new_flow',
-            'npfl=pypi_utils.__main__:new_flow'
+            'pull=kcliutils.__main__:pull',
+            'pll=kcliutils.__main__:pull',
+
+
+            # Pip
+
+            'pip_uninstall=kcliutils.__main__:uninstall',
+            'pipu=kcliutils.__main__:uninstall',
+
+            'pip_install=kcliutils.__main__:install',
+            'pipi=kcliutils.__main__:install',
+            'pipiu=kcliutils.__main__:install',
+
+            'pip_reinstall=kcliutils.__main__:reinstall',
+            'pipir=kcliutils.__main__:reinstall',
+
+
+            # New files
+
+            'new_python_install_file=kcliutils.__main__:create_install_file',
+            'npif=kcliutils.__main__:create_install_file',
+
+            'new_python_api=kcliutils.__main__:create_new_api',
+            'npa=kcliutils.__main__:create_new_api',
+
+            'new_python_class=kcliutils.__main__:create_new_class',
+            'npc=kcliutils.__main__:create_new_class',
+
+            'new_python_enum=kcliutils.__main__:create_new_enum',
+            'npe=kcliutils.__main__:create_new_enum',
+
+            'new_python_file=kcliutils.__main__:create_new_file',
+            'npf=kcliutils.__main__:create_new_file',
+
+            'new_python_flow=kcliutils.__main__:create_new_flow',
+            'npfl=kcliutils.__main__:create_new_flow',
+
+            'new_python_subpackage=kcliutils.__main__:create_new_subpackage',
+            'nps=kcliutils.__main__:create_new_subpackage'
         ]
     },
-    python_requires='>=3.5',
+    python_requires='>=3.4',
 )
