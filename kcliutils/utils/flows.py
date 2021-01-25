@@ -155,7 +155,7 @@ class Flows:
 
     @staticmethod
     def install(package: str):
-        print(Utils.pip('install -U {}'.format(package)))
+        print(Utils.pip('install -U {}==0.0.5'.format(package)))
 
     @classmethod
     def reinstall(cls, package: str):
