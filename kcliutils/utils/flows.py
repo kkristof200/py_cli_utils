@@ -9,6 +9,7 @@ from kcu import kpath, strio, sh
 from kdependencies import Dependencies, InstalledPackage
 
 # Local
+from .constants import Constants
 from .utils import Utils
 from .prompt import Prompt
 from .texts import new_api, new_class, new_enum, new_license, file, flow, gitignore, new_readme, updated_readme, new_setup, updated_setup, new_install_dependencies_file
@@ -63,39 +64,47 @@ class Flows:
         if clean_lines:
             cls.clean_lines(ensure_path=False)
 
-        old_setup_str = strio.load(Utils.setup_file_path())
-        old_readme_str = strio.load(Utils.readme_path())
-        demo_str = strio.load(Utils.demo_path())
-
         print('Getting dependencies...')
         dependencies = Dependencies.get()
 
+        print('Updating setup.py')
+        old_setup_str = strio.load(Utils.setup_file_path())
         updated_setup_str = updated_setup(old_setup_str, dependencies)
-        updated_readme_str = updated_readme(old_readme_str, demo_str, dependencies)
-
         Utils.create_file(Utils.setup_file_path(), updated_setup_str, overwrite=True)
+
+        print('Updating README.md')
+        old_readme_str = strio.load(Utils.readme_path())
+        demo_str = strio.load(Utils.demo_path())
+        updated_readme_str = updated_readme(old_readme_str, demo_str, dependencies)
         Utils.create_file(Utils.readme_path(), updated_readme_str, overwrite=True)
 
         cls.create_install_file(dependencies, open=False)
 
     @classmethod
-    def publish(cls, ensure_path: bool = True, clean_lines: bool = True):
+    def publish(cls, ensure_path: bool = True, clean_lines: bool = True, reinstall: bool = True):
         if ensure_path:
             Utils.ensure_and_get_path()
 
-        cls.upgrade(ensure_path=False, clean_lines=clean_lines)
         current_package_name = Utils.get_current_package_name()
+
+        print('Upgrading \'{}\''.format(current_package_name))
+        cls.upgrade(ensure_path=False, clean_lines=clean_lines)
 
         print('Publishing \'{}\' to pypi'.format(current_package_name))
         Utils.publish()
 
-        print('Reinstalling \'{}\''.format(current_package_name))
-        cls.reinstall(current_package_name)
+        if reinstall:
+            print('Reinstalling \'{}\''.format(current_package_name))
+            cls.reinstall(current_package_name)
 
     @classmethod
     def publish_and_push(cls, message: Optional[str] = None, clean_lines: bool = True):
-        cls.publish(ensure_path=True, clean_lines=clean_lines)
+        cls.publish(ensure_path=True, clean_lines=clean_lines, reinstall=False)
         cls.push(ensure_path=False, clean_lines=False)
+
+        current_package_name = Utils.get_current_package_name()
+        print('Reinstalling \'{}\''.format(current_package_name))
+        cls.reinstall(current_package_name)
 
     @classmethod
     def clean_lines(cls, ensure_path: bool = True):
@@ -142,11 +151,11 @@ class Flows:
 
     @staticmethod
     def uninstall(package: str):
-        Utils.pip('uninstall -y {}'.format(package))
+        print(Utils.pip('uninstall -y {}'.format(package)))
 
     @staticmethod
     def install(package: str):
-        Utils.pip('install -U {}'.format(package))
+        print(Utils.pip('install -U {}'.format(package)))
 
     @classmethod
     def reinstall(cls, package: str):
@@ -166,6 +175,7 @@ class Flows:
 
             return
 
+        print('Creating \'{}\''.format(Constants.INSTALL_DEPENDENCIES_FILE_NAME))
         Utils.create_file(file_path, new_install_dependencies_file(dependencies), overwrite=True)
 
         if open:
