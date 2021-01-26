@@ -26,13 +26,19 @@ def updated_readme(
         usage = strings.between(readme, '## Usage', '##')
 
         if usage:
-            readme.replace(usage.strip(), '\n\n~~~~python\n{}\n~~~~\n\n'.format(demo.strip()))
+            readme = readme.replace(usage.strip(), '~~~~python\n{}\n~~~~'.format(demo.strip()))
 
     if dependencies:
         old_dependencies = strings.between(readme, '## Dependencies', '##')
 
+        if not old_dependencies:
+            if readme.endswith('## Dependencies'):
+                old_dependencies = '## Dependencies'
+        else:
+            old_dependencies = '## Dependencies' + old_dependencies
+
         if old_dependencies:
-            readme.replace(old_dependencies.strip(), ', '.join(['[{}]({})'.format(d.name, 'https://pypi.org/project/{}'.format(d.name) if not d.private else d.home_url) for d in dependencies]))
+            readme = readme.replace(old_dependencies.strip(), '## Dependencies\n\n' + ', '.join(['[{}]({})'.format(d.name, 'https://pypi.org/project/{}'.format(d.name) if not d.private else d.home_url) for d in dependencies]))
 
     return readme.strip()
 
