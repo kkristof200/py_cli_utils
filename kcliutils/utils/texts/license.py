@@ -13,12 +13,12 @@ from .utils import multi_replace
 
 # ------------------------------------------------------------ Public methods ------------------------------------------------------------ #
 
-def new_license(package_name: str) -> str:
+def new_license(author_name: str) -> str:
     return multi_replace(
         license,
         {
             '[YEAR]': datetime.utcnow().year,
-            '[PACKAGE_NAME]': package_name
+            '[AUTHOR_NAME]': author_name
         }
     )
 

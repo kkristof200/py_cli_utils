@@ -48,7 +48,7 @@ class Flows:
             cls.create_new_gitignore(open=False)
 
         if not os.path.exists(Utils.license_path()):
-            Utils.create_file(Utils.license_path(), new_license(package_name))
+            Utils.create_file(Utils.license_path(), new_license(config.default_author))
 
         if not os.path.exists(Utils.demo_path()):
             Utils.create_file(Utils.demo_path())

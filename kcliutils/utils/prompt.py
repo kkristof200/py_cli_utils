@@ -118,7 +118,7 @@ class Prompt:
     @staticmethod
     def __get_author_prompt(default_author: Optional[str] = None) -> Input:
         return Input(
-            "Default author to use for packages: ",
+            "Author (name) to use for publishing packages and creating licenses: ",
             default=default_author,
             word_color=colors.foreground["yellow"],
             pattern='.*'
