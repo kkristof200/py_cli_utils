@@ -65,17 +65,30 @@ def __create_shields(
     package_name: str,
     full_repo_name: Optional[int]
 ):
-    return ' '.join(
+    return '\n\n'.join(
         [
-            __shield('GitHub - last commit', 'github/last-commit/{}'.format(full_repo_name)),
-            __shield('GitHub - commit activity', 'github/commit-activity/m/{}'.format(full_repo_name)),
-            __shield('GitHub - code size in bytes', 'github/languages/code-size/{}'.format(full_repo_name)),
-            __shield('GitHub - repo size', 'github/repo-size/{}'.format(full_repo_name)),
-            __shield('GitHub - lines of code', 'tokei/lines/github/{}'.format(full_repo_name)),
-            __shield('GitHub - license', 'github/license/{}'.format(full_repo_name)),
-
-            __shield('PyPI - Python Version', 'pypi/pyversions/{}?logo=pypi'.format(package_name)),
-            __shield('PyPI - Downloads', 'pypi/dm/{}?logo=pypi'.format(package_name))
+            '\n'.join(
+                [
+                    __shield('PyPI - package version', 'pypi/v/{}?logo=pypi'.format(package_name)),
+                    __shield('PyPI - license', 'pypi/l/{}'.format(package_name)),
+                    __shield('PyPI - python version', 'pypi/pyversions/{}?logo=pypi'.format(package_name)),
+                    __shield('PyPI - downloads', 'pypi/dm/{}?logo=pypi'.format(package_name))
+                ]
+            ),
+            '\n'.join(
+                [
+                    __shield('GitHub - last commit', 'github/last-commit/{}'.format(full_repo_name)),
+                    __shield('GitHub - commit activity', 'github/commit-activity/m/{}'.format(full_repo_name))
+                ]
+            ),
+            '\n'.join(
+                [
+                    __shield('GitHub - code size in bytes', 'github/languages/code-size/{}'.format(full_repo_name)),
+                    __shield('GitHub - repo size', 'github/repo-size/{}'.format(full_repo_name)),
+                    __shield('GitHub - lines of code', 'tokei/lines/github/{}'.format(full_repo_name)),
+                    __shield('GitHub - license', 'github/license/{}'.format(full_repo_name))
+                ]
+            )
         ]
     )
 
