@@ -44,11 +44,11 @@ class Utils:
         cls.cleanup()
 
         # Ensure you have the latest versions of twine, setuptools, and wheel
-        cls.pip('install --user --upgrade twine setuptools wheel')
+        print(cls.pip('install --user --upgrade twine setuptools wheel'))
         # Build the package
-        cls.python('setup.py sdist bdist_wheel')
+        print(cls.python('setup.py sdist bdist_wheel'))
         # Upload it to pypi
-        cls.python('-m twine upload --repository pypi dist/*')
+        print(cls.python('-m twine upload --repository pypi dist/*'))
 
         cls.cleanup()
 
