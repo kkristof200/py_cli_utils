@@ -135,6 +135,7 @@ class Flows:
         if clean_lines:
             cls.clean_lines(ensure_path=False)
 
+        sh.sh('set_git_user', debug=False)
         print(sh.sh('git add .', debug=True))
         print(sh.sh('git commit -a -m \'{}\''.format(message or Utils.get_config(True).default_commit_message), debug=True))
         print(sh.sh('git push', debug=True))
