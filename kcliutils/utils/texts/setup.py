@@ -90,8 +90,8 @@ def __get_python_classifiers(
     max_python_version: float,
     license_str: Optional[str] = 'License :: OSI Approved :: MIT License'
 ) -> str:
-    current_version = min_python_version
-    classifiers = [current_version]
+    current_version = min_python_version - 0.1
+    classifiers = []
 
     while current_version < max_python_version:
         current_version += 0.1
