@@ -99,7 +99,8 @@ class Flows:
 
         if reinstall:
             print('Reinstalling \'{}\''.format(current_package_name))
-            cls.reinstall(current_package_name, version=current_version_number(Utils.setup_file_path()), max_install_try_count=5)
+            cls.uninstall(current_package_name)
+            cls.install('.')
 
     @classmethod
     def publish_and_push(cls, message: Optional[str] = None, clean_lines: bool = True):
