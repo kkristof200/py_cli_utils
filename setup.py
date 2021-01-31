@@ -10,7 +10,7 @@ else:
 
 setuptools.setup(
     name="kcliutils",
-    version="0.0.24",
+    version="0.0.25",
     author="Kristof",
     description="kcliutils",
     long_description=long_description,
