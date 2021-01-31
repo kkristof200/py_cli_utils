@@ -7,7 +7,7 @@
 ## Install
 
 ~~~~bash
-pip install pypi_upgrade
+pip install kcliutils
 # or
-pip3 install pypi_upgrade
+pip3 install kcliutils
 ~~~~
