@@ -21,7 +21,10 @@ def publish():
     Flows.publish()
 
 def publish_and_push():
-    Flows.publish_and_push()
+    Flows.publish_and_push(Utils.get_arg(surpress_crash=True))
+
+def upgrade_push_install():
+    Flows.upgrade_push_install(Utils.get_arg(surpress_crash=True))
 
 def clean_lines():
     Flows.clean_lines()
