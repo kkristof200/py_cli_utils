@@ -140,7 +140,7 @@ class Flows:
                 print('Cleaning: \'{}\''.format(p))
 
                 with open(p, 'w') as f:
-                    f.write(text)
+                    f.write(text.strip())
 
 
     # Git
