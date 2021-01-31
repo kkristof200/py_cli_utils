@@ -111,6 +111,22 @@ class Flows:
         cls.reinstall(current_package_name, version=current_version_number(Utils.setup_file_path()), max_install_try_count=5)
 
     @classmethod
+    def upgrade_push_install(cls, message: Optional[str] = None, clean_lines: bool = True, reinstall: bool = True):
+        Utils.ensure_and_get_path()
+        current_package_name = Utils.get_current_package_name()
+
+        print('Upgrading \'{}\''.format(current_package_name))
+        cls.upgrade(ensure_path=False, clean_lines=clean_lines)
+
+        if reinstall:
+            print('Reinstalling \'{}\''.format(current_package_name))
+
+            cls.uninstall(current_package_name)
+            cls.install('.')
+
+        cls.push(ensure_path=False, clean_lines=False)
+
+    @classmethod
     def clean_lines(cls, ensure_path: bool = True):
         if ensure_path:
             Utils.ensure_and_get_path()

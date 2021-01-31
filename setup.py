@@ -10,7 +10,7 @@ else:
 
 setuptools.setup(
     name="kcliutils",
-    version="0.0.22",
+    version="0.0.23",
     author="Kristof",
     description="kcliutils",
     long_description=long_description,
@@ -43,7 +43,9 @@ setuptools.setup(
 
             'publish_and_push_python_package=kcliutils.__main__:publish_and_push',
             'pipush=kcliutils.__main__:publish_and_push',
-            'pppp=kcliutils.__main__:publish_and_push',
+
+            'upgrade_push_install=kcliutils.__main__:upgrade_push_install',
+            'prpipush=kcliutils.__main__:upgrade_push_install',
 
             'clean_lines=kcliutils.__main__:clean_lines',
             'cl=kcliutils.__main__:clean_lines',
