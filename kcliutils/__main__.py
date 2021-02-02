@@ -65,6 +65,22 @@ def create_new_api():
 def create_new_class():
     Flows.create_new_class(Utils.get_arg())
 
+def new_class_from_json():
+    json_path, class_name = None, None
+
+    for arg in Utils.get_args():
+        if arg.endswith('.json'):
+            json_path = arg
+        else:
+            class_name = arg
+
+    if not json_path:
+        print('No json path passed')
+
+        exit(1)
+
+    Flows.new_class_from_json(json_path, class_name)
+
 def create_new_enum():
     Flows.create_new_enum(Utils.get_arg())
 

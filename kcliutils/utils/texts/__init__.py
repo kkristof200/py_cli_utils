@@ -1,5 +1,6 @@
 from .api import new_api
 from .class_ import new_class
+from .json_class import new_json_class
 from .enum_ import new_enum
 from .license import new_license
 from .readme import new_readme, updated_readme

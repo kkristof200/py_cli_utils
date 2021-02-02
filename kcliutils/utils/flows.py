@@ -2,7 +2,7 @@
 
 # System
 from typing import Optional, List
-import os, time
+import os, time, json
 
 # Pip
 from kcu import kpath, strio, sh
@@ -12,7 +12,7 @@ from kdependencies import Dependencies, InstalledPackage
 from .constants import Constants
 from .utils import Utils
 from .prompt import Prompt
-from .texts import new_api, new_class, new_enum, new_license, file, flow, gitignore, new_readme, updated_readme, new_setup, updated_setup, new_install_dependencies_file, current_version_number
+from .texts import new_api, new_class, new_json_class, new_enum, new_license, file, flow, gitignore, new_readme, updated_readme, new_setup, updated_setup, new_install_dependencies_file, current_version_number
 
 # ---------------------------------------------------------------------------------------------------------------------------------------- #
 
@@ -233,6 +233,16 @@ class Flows:
     def create_new_class(name: str, open: bool = True):
         _, file_path, _, _class = Utils.get_paths_name_class(name)
         Utils.create_file(file_path, new_class(_class))
+
+        if open:
+            Utils.vscode_open(file_path)
+
+    @staticmethod
+    def new_class_from_json(json_path: str, name: Optional[str] = None, open: bool = True):
+        name = name or json_path.split(os.sep)[-1].split('.')[0]
+
+        _, file_path, _, _class = Utils.get_paths_name_class(name)
+        Utils.create_file(file_path, new_json_class(_class, json.load(json_path)))
 
         if open:
             Utils.vscode_open(file_path)

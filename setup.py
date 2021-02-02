@@ -10,7 +10,7 @@ else:
 
 setuptools.setup(
     name="kcliutils",
-    version="0.0.27",
+    version="0.0.28",
     author="Kristof",
     description="kcliutils",
     long_description=long_description,
@@ -86,6 +86,9 @@ setuptools.setup(
 
             'new_python_class=kcliutils.__main__:create_new_class',
             'npc=kcliutils.__main__:create_new_class',
+
+            'new_python_class_from_json=kcliutils.__main__:create_new_class',
+            'npcj=kcliutils.__main__:create_new_class',
 
             'new_python_enum=kcliutils.__main__:create_new_enum',
             'npe=kcliutils.__main__:create_new_enum',

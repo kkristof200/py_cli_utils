@@ -3,6 +3,7 @@ from .class_ import class_
 from .enum_ import enum_
 from .file import file
 from .flow import flow
+from .json_class import json_class
 from .gitignore import gitignore
 from .license import license
 from .readme import readme
