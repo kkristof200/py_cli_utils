@@ -31,28 +31,45 @@ def __init_vars_str(
     d: Dict[str, any],
     indent_spaces: int = 4
 ) -> str:
-    init_str = ''
+    init_strs = []
+    key_pairs = {k:__formatted_key(k) for k in d.keys()}
+    longest = len(sorted(key_pairs.values(), key=len)[-1])
 
-    for k in d.keys():
-        formatted_key = __formatted_key(k)
-
-        init_str += '{}self.{} = d.get(\'{}\')'.format(
-            ' ' * 2 * indent_spaces,
-            formatted_key,
-            k
+    for k, fk in key_pairs.items():
+        init_strs.append(
+            '{}self.{} = {}d.get(\'{}\')'.format(
+                ' ' * 2 * indent_spaces,
+                fk,
+                ' ' * (longest - len(fk)),
+                k
+            )
         )
 
-    return init_str
+    return '\n'.join(init_strs)
 
 def __formatted_key(s: str) -> str:
     _s = ''
+    last_c = None
 
     for i, c in enumerate(s):
         if c in string.punctuation:
+            if last_c == '_':
+                last_c = c
+
+                continue
+
             c = '_'
         elif c in string.ascii_uppercase:
+            if last_c and '_' in last_c:
+                c = c.lower()
+                last_c = c
+                _s += c
+
+                continue
+
             c = '{}{}'.format('_' if i > 0 else '', c.lower())
 
+        last_c = c
         _s += c
 
     return _s

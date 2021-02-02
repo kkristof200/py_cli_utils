@@ -65,7 +65,7 @@ def create_new_api():
 def create_new_class():
     Flows.create_new_class(Utils.get_arg())
 
-def new_class_from_json():
+def create_class_from_json():
     json_path, class_name = None, None
 
     for arg in Utils.get_args():

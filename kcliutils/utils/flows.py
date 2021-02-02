@@ -2,10 +2,10 @@
 
 # System
 from typing import Optional, List
-import os, time, json
+import os, time
 
 # Pip
-from kcu import kpath, strio, sh
+from kcu import kpath, strio, sh, kjson
 from kdependencies import Dependencies, InstalledPackage
 
 # Local
@@ -239,10 +239,13 @@ class Flows:
 
     @staticmethod
     def new_class_from_json(json_path: str, name: Optional[str] = None, open: bool = True):
+        print('json_path', json_path)
+        print('name', name)
         name = name or json_path.split(os.sep)[-1].split('.')[0]
+        print('name', name)
 
         _, file_path, _, _class = Utils.get_paths_name_class(name)
-        Utils.create_file(file_path, new_json_class(_class, json.load(json_path)))
+        Utils.create_file(file_path, new_json_class(_class, kjson.load(json_path)))
 
         if open:
             Utils.vscode_open(file_path)
