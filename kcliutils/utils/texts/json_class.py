@@ -37,7 +37,7 @@ def __init_vars_str(
 
     for k, fk in key_pairs.items():
         init_strs.append(
-            '{}self.{} = {}d.get(\'{}\')'.format(
+            '{}self.{}{} = d.get(\'{}\')'.format(
                 ' ' * 2 * indent_spaces,
                 fk,
                 ' ' * (longest - len(fk)),
