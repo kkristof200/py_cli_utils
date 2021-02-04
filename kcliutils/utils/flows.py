@@ -135,13 +135,13 @@ class Flows:
         for p in kpath.file_paths_from_folder(os.getcwd(), allowed_extensions=cls.__allowed_extesions()):
             with open(p, 'r') as f:
                 org_text = f.read()
-                text = '\n'.join([l.rstrip() for l in org_text.strip().split('\n')]) + '\n'
+                text = '\n'.join([l.rstrip() for l in org_text.strip().split('\n')]).strip()
 
             if org_text != text:
                 print('Cleaning: \'{}\''.format(p))
 
                 with open(p, 'w') as f:
-                    f.write(text.strip())
+                    f.write(text)
 
 
     # Git
