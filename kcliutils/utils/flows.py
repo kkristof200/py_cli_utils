@@ -147,7 +147,7 @@ class Flows:
     # Git
 
     @classmethod
-    def push(cls, message: Optional[str] = None, ensure_path: bool = True, clean_lines: bool = True):
+    def push(cls, message: Optional[str] = None, ensure_path: bool = False, clean_lines: bool = True):
         if ensure_path:
             Utils.ensure_and_get_path()
 
