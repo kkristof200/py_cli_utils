@@ -1,7 +1,7 @@
 # ----------------------------------------------------------- class: Constants ----------------------------------------------------------- #
 
 class Constants:
-    CONFIG_FILE_NAME               = '.pypi_utils.json'
+    CONFIG_FILE_NAME               = '.kcliutils.json'
     GITIGNORE_FILE_NAME            = '.gitignore'
     DEMO_FILE_NAME                 = 'demo.py'
     README_FILE_NAME               = 'README.md'

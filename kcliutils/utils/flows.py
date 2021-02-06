@@ -36,7 +36,7 @@ class Flows:
         if not os.path.exists(Utils.setup_file_path()):
             Utils.create_file(Utils.setup_file_path(), new_setup(
                 package_name=package_name,
-                author=config.author,
+                author=config.default_author,
                 git_url=Utils.get_git_url(),
                 min_python_version=config.default_min_python_version,
                 max_python_version=config.default_max_python_version,
