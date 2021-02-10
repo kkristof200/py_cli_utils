@@ -107,7 +107,7 @@ def __get_python_classifiers(
 def __dependencies_str(dependencies: List[InstalledPackage]) -> str:
     return '\n{}{}\n{}'.format(
         8*' ',
-        ',\n{}'.format(8*' ').join(['\'{}\''.format(d.get_install_name()) for d in dependencies]),
+        ',\n{}'.format(8*' ').join(['\'{}{}\''.format(d.get_install_name(), '>={}'.format(d.version)) for d in dependencies]),
         4*' '
     ) if dependencies else ''
 

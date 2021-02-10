@@ -10,7 +10,7 @@ else:
 
 setuptools.setup(
     name="kcliutils",
-    version="0.0.41",
+    version="0.0.43",
     author="Kristof",
     description="kcliutils",
     long_description=long_description,
@@ -18,10 +18,10 @@ setuptools.setup(
     url="https://github.com/kkristof200/py_cli_utils",
     packages=setuptools.find_packages(),
     install_requires=[
-        'bullet',
-        'jsoncodable',
-        'kcu',
-        'kdependencies'
+        'bullet>=2.2.0',
+        'jsoncodable>=0.0.11',
+        'kcu>=0.0.60',
+        'kdependencies>=0.0.4'
     ],
     classifiers=[
         "Programming Language :: Python :: 3.4",
