@@ -25,10 +25,12 @@ def updated_setup(
 ) -> str:
     if dependencies:
         try:
-            old_dependencies_str = old_setup.split('install_requires')[-1].split('[')[1].split(']')[0]
+            old_dependencies_str = 'install_requires{}'.format(old_setup.split('install_requires')[-1].split(']')[0])
 
-            if old_dependencies_str:
-                old_setup = old_setup.replace(old_dependencies_str, __dependencies_str(dependencies))
+            old_setup = old_setup.replace(
+                old_dependencies_str,
+                'install_requires=[{}'.format(__dependencies_str(dependencies))
+            )
         except Exception as e:
             print(e)
 
