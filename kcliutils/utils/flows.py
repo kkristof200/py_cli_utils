@@ -203,7 +203,6 @@ class Flows:
         cls.uninstall(package)
         cls.install(package, version, max_try_count=max_install_try_count)
 
-
     # New files
 
     @staticmethod
