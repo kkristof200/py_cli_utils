@@ -208,7 +208,7 @@ class Flows:
 
     @staticmethod
     def create_requirements_file(dependencies: Optional[List[InstalledPackage]] = None, open: bool = True):
-        file_path = Utils.install_dependencies_path()
+        file_path = Utils.requirements_path()
 
         if not dependencies:
             if os.path.exists(file_path):

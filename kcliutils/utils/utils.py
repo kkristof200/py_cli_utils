@@ -141,6 +141,10 @@ class Utils:
         return cls.path(Constants.INSTALL_DEPENDENCIES_FILE_NAME)
 
     @classmethod
+    def requirements_path(cls) -> str:
+        return cls.path(Constants.REQUIREMENTS_FILE_NAME)
+
+    @classmethod
     def demo_path(cls) -> str:
         return cls.path(Constants.DEMO_FILE_NAME)
 
