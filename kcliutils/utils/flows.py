@@ -12,7 +12,7 @@ from kdependencies import Dependencies, InstalledPackage
 from .constants import Constants
 from .utils import Utils
 from .prompt import Prompt
-from .texts import new_api, new_class, new_json_class, new_enum, new_license, file, flow, gitignore, new_readme, updated_readme, new_setup, updated_setup, new_install_dependencies_file, current_version_number
+from .texts import new_api, new_class, new_json_class, new_enum, new_license, file, flow, gitignore, new_readme, updated_readme, new_setup, updated_setup, new_install_dependencies_file, current_version_number, new_requirements_file
 
 # ---------------------------------------------------------------------------------------------------------------------------------------- #
 
@@ -82,7 +82,8 @@ class Flows:
         updated_readme_str = updated_readme(old_readme_str, demo_str, dependencies)
         Utils.create_file(Utils.readme_path(), updated_readme_str, overwrite=True)
 
-        cls.create_install_file(dependencies, open=False)
+        # cls.create_install_file(dependencies, open=False)
+        cls.create_requirements_file(dependencies, open=False)
 
     @classmethod
     def publish(cls, ensure_path: bool = True, clean_lines: bool = True, reinstall: bool = True):
@@ -204,6 +205,22 @@ class Flows:
 
 
     # New files
+
+    @staticmethod
+    def create_requirements_file(dependencies: Optional[List[InstalledPackage]] = None, open: bool = True):
+        file_path = Utils.install_dependencies_path()
+
+        if not dependencies:
+            if os.path.exists(file_path):
+                os.remove(file_path)
+
+            return
+
+        print('Creating \'{}\''.format(Constants.REQUIREMENTS_FILE_NAME))
+        Utils.create_file(file_path, new_requirements_file(dependencies), overwrite=True)
+
+        if open:
+            Utils.vscode_open(file_path)
 
     @staticmethod
     def create_install_file(dependencies: Optional[List[InstalledPackage]] = None, open: bool = True):
