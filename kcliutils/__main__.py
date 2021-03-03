@@ -27,7 +27,7 @@ def upgrade_push_install():
     Flows.upgrade_push_install(Utils.get_arg(surpress_crash=True))
 
 def clean_lines():
-    Flows.clean_lines()
+    Flows.clean_lines(ensure_path=False)
 
 
 # Git

@@ -2,6 +2,7 @@
 
 # System
 from typing import Optional, List
+import os
 
 # Pip
 from kdependencies import InstalledPackage
@@ -38,7 +39,15 @@ def updated_readme(
             old_dependencies = '## Dependencies' + old_dependencies
 
         if old_dependencies:
-            readme = readme.replace(old_dependencies.strip(), '## Dependencies\n\n' + ', '.join(['[{}]({})'.format(d.name, 'https://pypi.org/project/{}'.format(d.name) if not d.private else d.home_url) for d in dependencies]))
+            readme = readme.replace(
+                old_dependencies.strip(),
+                '## Dependencies\n\n' + ', '.join(
+                    ['[{}]({})'.format(
+                        d.name if not d.private else d.home_url.split(os.sep)[-1], 'https://pypi.org/project/{}'.format(d.name) if not d.private else d.home_url)
+                        for d in dependencies
+                    ]
+                )
+            )
 
     return readme.strip()
 
@@ -54,7 +63,12 @@ def new_readme(
             '[PACKAGE_NAME]': package_name,
             '[SHIELDS]': __create_shields(package_name, full_repo_name) if full_repo_name else '',
             '[DESCRIPTION]': description or '',
-            '[DEPENDENCIES]': ', '.join(['[{}]({})'.format(d.name, 'https://pypi.org/project/{}'.format(d.name) if not d.private else d.home_url) for d in dependencies]) if dependencies else ''
+            '[DEPENDENCIES]': ', '.join(
+                ['[{}]({})'.format(
+                    d.name if not d.private else d.home_url.split(os.sep)[-1], 'https://pypi.org/project/{}'.format(d.name) if not d.private else d.home_url)
+                    for d in dependencies
+                ]
+            ) if dependencies else ''
         }
     )
 

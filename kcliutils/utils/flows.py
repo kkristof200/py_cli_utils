@@ -69,7 +69,7 @@ class Flows:
             cls.clean_lines(ensure_path=False)
 
         print('Getting dependencies...')
-        dependencies = Dependencies.get(os.getcwd())
+        dependencies = [d for d in Dependencies.get(os.getcwd()) if not d.invalid]
 
         print('Updating setup.py')
         old_setup_str = strio.load(Utils.setup_file_path())
