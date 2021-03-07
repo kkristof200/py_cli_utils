@@ -61,10 +61,9 @@ class Prompt:
             package_name, description = cls.__prompt([
                 (cls.__get_package_name_prompt(default_package_name), str),
                 (cls.__get_package_description_prompt(), str)
-                # get_max_default_python_version_prompt
             ])
 
-        return package_name, description#, max_v
+        return package_name, description
 
 
     # ------------------------------------------------------- Private methods -------------------------------------------------------- #
@@ -99,8 +98,7 @@ class Prompt:
         return Input(
             "Enter package name (will be used on pip when published): ",
             default=default_package_name,
-            word_color=colors.foreground["yellow"]#,
-            # pattern='.*'
+            word_color=colors.foreground["yellow"]
         )
 
     @staticmethod
