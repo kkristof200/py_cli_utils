@@ -52,14 +52,11 @@ class Prompt:
         passed_package_name: Optional[str] = None,
         default_package_name: Optional[str] = None
     ) -> Tuple[str, str]:
-        # get_max_default_python_version_prompt = (cls.__get_max_default_python_version_prompt(), float)
-
         if passed_package_name:
             package_name = passed_package_name
             description = cls.__prompt([
                 (cls.__get_package_description_prompt(), str)
-                # get_max_default_python_version_prompt
-            ])[0]
+            ])
         else:
             package_name, description = cls.__prompt([
                 (cls.__get_package_name_prompt(default_package_name), str),
