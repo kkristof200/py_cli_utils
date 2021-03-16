@@ -133,7 +133,21 @@ class Flows:
         if ensure_path:
             Utils.ensure_and_get_path()
 
-        for p in kpath.file_paths_from_folder(os.getcwd(), allowed_extensions=cls.__allowed_extesions()):
+        for p in kpath.file_paths_from_folder(os.getcwd(), allowed_extensions=Constants.ALLOWED_EXPENSIONS_TO_CLEAN):
+            lower_p = p.lower()
+            should_continue = False
+
+            for path_comp in Constants.IGNORED_PATH_COMPONENTS_TO_CLEAN:
+                _path_comp = path_comp.lower().strip(os.sep) + os.sep
+
+                if _path_comp in lower_p:
+                    should_continue = True
+
+                    break
+
+            if should_continue:
+                continue
+
             with open(p, 'r') as f:
                 org_text = f.read()
                 text = '\n'.join([l.rstrip() for l in org_text.strip().split('\n')]).strip()
@@ -321,21 +335,6 @@ class Flows:
             Utils.create_file(init_file_path, 'from .{} import {}'.format(class_file_name, _class))
         else:
             Utils.create_file(init_file_path, '')
-
-    # ------------------------------------------------------ Private properties ------------------------------------------------------ #
-
-
-
-    # ------------------------------------------------------- Private methods -------------------------------------------------------- #
-
-    @staticmethod
-    def __allowed_extesions() -> List[str]:
-        return [
-            '.py',
-            '.js',
-            '.ts',
-            '.json'
-        ]
 
 
 # ---------------------------------------------------------------------------------------------------------------------------------------- #
