@@ -42,7 +42,7 @@ npp package_name
 new_python_package package_name
 ~~~~
 
-This will generate
+`npp test_package_name` will generate
 
 ![npp result](https://i.imgur.com/3UUMDjY.png)
 
