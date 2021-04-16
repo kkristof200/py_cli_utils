@@ -197,7 +197,7 @@ pip_reinstall PACKAGE_NAME
 
 #### - npc/new_python_class
 ##### description:
-  - creates a python file with a class-like formatting
+    - creates a python file with a class-like formatting
 
 ~~~~shell
 npc file_name
