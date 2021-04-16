@@ -446,44 +446,21 @@ generated file contents
 ~~~~
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-#### - npa/new_python_api
-  - pip uninstall && pip installl
+#### - nps/new_python_subpackage
+  - creates a new subpackage at the desired relative path
 
 ~~~~shell
-pipir PACKAGE_NAME
+nps SUB_PACKAGE_NAME_OR_RELATIVE_PATH
 # or
-pip_reinstall PACKAGE_NAME
+new_python_subpackage SUB_PACKAGE_NAME_OR_RELATIVE_PATH
 ~~~~
 
+`nps test_subpackage` will generate
 
-
-
-
-
-
-
-
-
+![nps result](https://i.imgur.com/xNOBPPg.png)
 
 
 ## Usage
-
-~~~~python
-import kcliutils
-~~~~
 
 ## Dependencies
 
