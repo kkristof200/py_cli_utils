@@ -30,7 +30,7 @@ pip3 install kcliutils
 
 ### 1. Package related
 
-#### npp/new_python_package
+#### - npp/new_python_package
 Run in an empty folder with git checked out
 Creates a new empty package, with default files, such as .gitignore, README.md, setup.py, demo.py, LICENSE, etc.
 
@@ -46,7 +46,7 @@ This will generate
 
 ![npp result](https://i.imgur.com/3UUMDjY.png)
 
-#### upp/upgrade_python_package
+#### - upp/upgrade_python_package
 Run in an already existing project folder
 Updates setup.py with dependencies, bumps version number
 Updates install_dependencies.sh and requirements.txt
@@ -61,7 +61,7 @@ upp
 upgrade_python_package
 ~~~~
 
-#### ppp/publish_python_package
+#### - ppp/publish_python_package
 Calls upp, publishes to pypi and instals the new version
 
 ~~~~shell
@@ -72,7 +72,7 @@ ppp "Optional commit message"
 publish_python_package "Optional commit message"
 ~~~~
 
-#### prpipush/upgrade_push_install
+#### - prpipush/upgrade_push_install
 Same as ppp, but without publishing on pypi (for private, github-hosted packages)
 
 ~~~~shell
@@ -86,7 +86,7 @@ upgrade_push_install "Optional commit message"
 
 ### 2. Formatting
 
-#### cl/clean_lines
+#### - cl/clean_lines
 Cleans the ending useless spaces from every line
 
 ~~~~shell
@@ -98,7 +98,7 @@ clean_lines
 ~~~~
 
 
-#### migrate_comment_line_len
+#### - migrate_comment_line_len
 Updates the lengh of each separator comment line generated with the file generators from this package.
 
 ~~~~shell
@@ -110,7 +110,7 @@ migrate_comment_line_len Optional_length_which_defaults_to_your_settings
 
 ### 3. Git
 
-#### psh/push
+#### - psh/push
 stages/commits everything and pushes to github
 
 ~~~~shell
@@ -122,7 +122,7 @@ push "Optional commit message"
 ~~~~
 
 
-#### ftch/fetch
+#### - ftch/fetch
 git fetch
 
 ~~~~shell
@@ -134,7 +134,7 @@ fetch
 ~~~~
 
 
-#### pll/pull
+#### - pll/pull
 git pull
 
 ~~~~shell
@@ -149,7 +149,7 @@ pull
 ### 4. Pip
 
 
-#### pipu/pip_uninstall
+#### - pipu/pip_uninstall
 pip uninstall
 
 ~~~~shell
@@ -159,7 +159,7 @@ pip_uninstall PACKAGE_NAME
 ~~~~
 
 
-#### pipi/pipiu/pip_install
+#### - pipi/pipiu/pip_install
 pip install -U
 
 ~~~~shell
@@ -171,7 +171,7 @@ pip_install PACKAGE_NAME
 ~~~~
 
 
-#### pipir/pip_reinstall
+#### - pipir/pip_reinstall
 pip uninstall && pip install
 
 ~~~~shell
@@ -183,7 +183,7 @@ pip_reinstall PACKAGE_NAME
 
 ### 5. New files
 
-#### npc/new_python_class
+#### - npc/new_python_class
 creates a python file with a class-like formatting
 
 ~~~~shell
@@ -246,7 +246,7 @@ class TestClass:
 # ---------------------------------------------------------------------------------------------------------- #
 ~~~~
 
-#### npa/new_python_api
+#### - npa/new_python_api
 pip uninstall && pip installl
 
 ~~~~shell
