@@ -1,4 +1,4 @@
-# --------------------------------------------------------------- Imports ---------------------------------------------------------------- #
+# ------------------------------------------------------------ Imports ----------------------------------------------------------- #
 
 # System
 from typing import Optional, List
@@ -15,15 +15,15 @@ from .prompt import Prompt
 from .texts import new_api, new_class, new_json_class, new_enum, new_license, new_file, new_flow, gitignore, new_readme, updated_readme, new_setup, updated_setup, new_install_dependencies_file, current_version_number, new_requirements_file
 from .texts.utils import comment_line
 
-# ---------------------------------------------------------------------------------------------------------------------------------------- #
+# -------------------------------------------------------------------------------------------------------------------------------- #
 
 
 
-# ------------------------------------------------------------- class: Flows ------------------------------------------------------------- #
+# --------------------------------------------------------- class: Flows --------------------------------------------------------- #
 
 class Flows:
 
-    # -------------------------------------------------------- Public methods -------------------------------------------------------- #
+    # ---------------------------------------------------- Public methods ---------------------------------------------------- #
 
     # Main
 
@@ -63,7 +63,7 @@ class Flows:
         cls.create_new_subpackage(package_name, create_class=True)
 
     @classmethod
-    def upgrade(cls, ensure_path: bool = True, clean_lines: bool = True):
+    def upgrade(cls, ensure_path: bool = True, clean_lines: bool = False):
         if ensure_path:
             Utils.ensure_and_get_path()
 
@@ -88,7 +88,7 @@ class Flows:
         cls.create_requirements_file(dependencies, open=False)
 
     @classmethod
-    def publish(cls, ensure_path: bool = True, clean_lines: bool = True, reinstall: bool = True):
+    def publish(cls, ensure_path: bool = True, clean_lines: bool = False, reinstall: bool = True):
         if ensure_path:
             Utils.ensure_and_get_path()
 
@@ -106,7 +106,7 @@ class Flows:
             cls.install('.')
 
     @classmethod
-    def publish_and_push(cls, message: Optional[str] = None, clean_lines: bool = True):
+    def publish_and_push(cls, message: Optional[str] = None, clean_lines: bool = False):
         cls.publish(ensure_path=True, clean_lines=clean_lines, reinstall=False)
         cls.push(ensure_path=False, clean_lines=False)
 
@@ -115,7 +115,7 @@ class Flows:
         cls.reinstall(current_package_name, version=current_version_number(Utils.setup_file_path()), max_install_try_count=5)
 
     @classmethod
-    def upgrade_push_install(cls, message: Optional[str] = None, clean_lines: bool = True, reinstall: bool = True):
+    def upgrade_push_install(cls, message: Optional[str] = None, clean_lines: bool = False, reinstall: bool = True):
         Utils.ensure_and_get_path()
         current_package_name = Utils.get_current_package_name()
 
@@ -371,4 +371,4 @@ class Flows:
             Utils.create_file(init_file_path, '')
 
 
-# ---------------------------------------------------------------------------------------------------------------------------------------- #
+# -------------------------------------------------------------------------------------------------------------------------------- #

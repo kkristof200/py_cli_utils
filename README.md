@@ -459,9 +459,6 @@ new_python_subpackage SUB_PACKAGE_NAME_OR_RELATIVE_PATH
 
 ![nps result](https://i.imgur.com/xNOBPPg.png)
 
-
-## Usage
-
 ## Dependencies
 
 [bullet](https://pypi.org/project/bullet), [jsoncodable](https://pypi.org/project/jsoncodable), [kcu](https://pypi.org/project/kcu), [kdependencies](https://pypi.org/project/kdependencies)
