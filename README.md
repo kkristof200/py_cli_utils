@@ -246,6 +246,22 @@ class TestClass:
 # ---------------------------------------------------------------------------------------------------------- #
 ~~~~
 
+
+#### - npc/new_python_api
+   - creates a python file with a api-like formatting (conforming [ksimpleapi](https://github.com/kkristof200/py_simpleapi))
+
+~~~~shell
+npc file_name
+# creates 'file_name.py' class 'FileName' in it
+# also accepts rerlative path 'relative/path/to/file_name'
+
+# or
+new_python_api file_name
+~~~~
+generated fille contents
+~~~~python
+~~~~
+
 #### - npa/new_python_api
   - pip uninstall && pip installl
 
