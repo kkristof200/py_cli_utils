@@ -35,7 +35,7 @@ setuptools.setup(
     ],
     entry_points={
         'console_scripts': [
-            # Main
+            # Package related
 
             'new_python_package=kcliutils.__main__:new_package',
             'npp=kcliutils.__main__:new_package',
@@ -52,10 +52,14 @@ setuptools.setup(
             'upgrade_push_install=kcliutils.__main__:upgrade_push_install',
             'prpipush=kcliutils.__main__:upgrade_push_install',
 
+
+            # Formatting
+
             'clean_lines=kcliutils.__main__:clean_lines',
             'cl=kcliutils.__main__:clean_lines',
 
             'migrate_comment_line_len=kcliutils.__main__:migrate_comment_line_len',
+
 
             # Git
 
@@ -83,9 +87,6 @@ setuptools.setup(
 
 
             # New files
-
-            'new_python_install_file=kcliutils.__main__:create_install_file',
-            'npif=kcliutils.__main__:create_install_file',
 
             'new_python_api=kcliutils.__main__:create_new_api',
             'npa=kcliutils.__main__:create_new_api',
