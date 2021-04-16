@@ -62,7 +62,7 @@ upgrade_python_package
 ~~~~
 
 ####  ppp/publish_python_package
-  - Calls upp, publishes to pypi and instals the new version
+  - Calls upp, publishes to pypi and installs the new version
 
 ~~~~shell
 # cd to desired folder with .git in it
