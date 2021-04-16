@@ -31,7 +31,7 @@ pip3 install kcliutils
 ### 1. Package related
 
 #### - npp/new_python_package
-description: Run in an empty folder with git checked out
+##### description: Run in an empty folder with git checked out
 Creates a new empty package, with default files, such as .gitignore, README.md, setup.py, demo.py, LICENSE, etc.
 
 ~~~~shell
@@ -47,7 +47,7 @@ This will generate
 ![npp result](https://i.imgur.com/3UUMDjY.png)
 
 #### - upp/upgrade_python_package
-description: Run in an already existing project folder
+##### description: Run in an already existing project folder
 Updates setup.py with dependencies, bumps version number
 Updates install_dependencies.sh and requirements.txt
 Updates readme with dependencies, copies the contents of 'demo.py' to the usage section of the reeadme
@@ -62,7 +62,7 @@ upgrade_python_package
 ~~~~
 
 #### - ppp/publish_python_package
-description: Calls upp, publishes to pypi and instals the new version
+##### description: Calls upp, publishes to pypi and instals the new version
 
 ~~~~shell
 # cd to desired folder with .git in it
@@ -73,7 +73,7 @@ publish_python_package "Optional commit message"
 ~~~~
 
 #### - prpipush/upgrade_push_install
-description: Same as ppp, but without publishing on pypi (for private, github-hosted packages)
+##### description: Same as ppp, but without publishing on pypi (for private, github-hosted packages)
 
 ~~~~shell
 # cd to desired folder with .git in it
@@ -87,7 +87,7 @@ upgrade_push_install "Optional commit message"
 ### 2. Formatting
 
 #### - cl/clean_lines
-description: Cleans the ending useless spaces from every line
+##### description: Cleans the ending useless spaces from every line
 
 ~~~~shell
 # cd to desired folder
@@ -99,7 +99,7 @@ clean_lines
 
 
 #### - migrate_comment_line_len
-description: Updates the lengh of each separator comment line generated with the file generators from this package.
+##### description: Updates the lengh of each separator comment line generated with the file generators from this package.
 
 ~~~~shell
 # cd to desired folder
@@ -111,7 +111,7 @@ migrate_comment_line_len Optional_length_which_defaults_to_your_settings
 ### 3. Git
 
 #### - psh/push
-description: stages/commits everything and pushes to github
+##### description: stages/commits everything and pushes to github
 
 ~~~~shell
 # cd to desired folder
@@ -123,7 +123,7 @@ push "Optional commit message"
 
 
 #### - ftch/fetch
-description: git fetch
+##### description: git fetch
 
 ~~~~shell
 # cd to desired folder
@@ -135,7 +135,7 @@ fetch
 
 
 #### - pll/pull
-description: git pull
+##### description: git pull
 
 ~~~~shell
 # cd to desired folder
@@ -150,7 +150,7 @@ pull
 
 
 #### - pipu/pip_uninstall
-description: pip uninstall
+##### description: pip uninstall
 
 ~~~~shell
 pipu PACKAGE_NAME
@@ -160,7 +160,7 @@ pip_uninstall PACKAGE_NAME
 
 
 #### - pipi/pipiu/pip_install
-description: pip install -U
+##### description: pip install -U
 
 ~~~~shell
 pipi PACKAGE_NAME
@@ -172,7 +172,7 @@ pip_install PACKAGE_NAME
 
 
 #### - pipir/pip_reinstall
-description: pip uninstall && pip install
+##### description: pip uninstall && pip install
 
 ~~~~shell
 pipir PACKAGE_NAME
@@ -184,7 +184,7 @@ pip_reinstall PACKAGE_NAME
 ### 5. New files
 
 #### - npc/new_python_class
-description: creates a python file with a class-like formatting
+##### description: creates a python file with a class-like formatting
 
 ~~~~shell
 npc file_name
@@ -247,7 +247,7 @@ class TestClass:
 ~~~~
 
 #### - npa/new_python_api
-description: pip uninstall && pip installl
+##### description: pip uninstall && pip installl
 
 ~~~~shell
 pipir PACKAGE_NAME
