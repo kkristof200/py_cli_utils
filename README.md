@@ -194,6 +194,7 @@ npc file_name
 # or
 new_python_class file_name
 ~~~~
+generated fille contents
 ~~~~python
 # ------------------------------------------------- Imports ------------------------------------------------ #
 
