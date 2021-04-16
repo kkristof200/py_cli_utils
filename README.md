@@ -189,12 +189,12 @@ pip_reinstall PACKAGE_NAME
 ~~~~shell
 npc file_name
 # creates 'file_name.py' class 'FileName' in it
-# also accepts rerlative path 'relative/path/to/file_name'
+# also accepts relative path 'relative/path/to/file_name'
 
 # or
 new_python_class file_name
 ~~~~
-generated fille contents
+generated file contents
 ~~~~python
 # ------------------------------------------------- Imports ------------------------------------------------ #
 
@@ -247,20 +247,217 @@ class TestClass:
 ~~~~
 
 
-#### - npc/new_python_api
+#### - npa/new_python_api
    - creates a python file with a api-like formatting (conforming [ksimpleapi](https://github.com/kkristof200/py_simpleapi))
 
 ~~~~shell
-npc file_name
+npa file_name
 # creates 'file_name.py' class 'FileName' in it
-# also accepts rerlative path 'relative/path/to/file_name'
+# also accepts relative path 'relative/path/to/file_name'
 
 # or
 new_python_api file_name
 ~~~~
-generated fille contents
+generated file contents
 ~~~~python
+# ------------------------------------------------- Imports ------------------------------------------------ #
+
+# System
+from typing import Optional, Dict
+
+# Pip
+from ksimpleapi import Api
+
+# Local
+
+
+# ---------------------------------------------------------------------------------------------------------- #
+
+
+
+# --------------------------------------------- class: FileName -------------------------------------------- #
+
+class FileName(Api):
+
+# -------------------------------------------- Overrides ------------------------------------------- #
+
+    @classmethod
+    def extra_headers(cls) -> Optional[Dict[str, any]]:
+        return {
+
+        }
+
+
+    # ---------------------------------------- Public properties --------------------------------------- #
+
+
+
+
+    # ----------------------------------------- Public methods ----------------------------------------- #
+
+
+
+
+    # --------------------------------------- Private properties --------------------------------------- #
+
+
+
+
+    # ----------------------------------------- Private methods ---------------------------------------- #
+
+
+
+
+# ---------------------------------------------------------------------------------------------------------- #
 ~~~~
+
+
+#### - npe/new_python_enum
+   - creates a python file with a enum-like formatting
+
+~~~~shell
+npe file_name
+# creates 'file_name.py' enum 'FileName' in it
+# also accepts relative path 'relative/path/to/file_name'
+
+# or
+new_python_enum file_name
+~~~~
+generated file contents
+~~~~python
+# ------------------------------------------------- Imports ------------------------------------------------ #
+
+# System
+from enum import Enum
+
+# ---------------------------------------------------------------------------------------------------------- #
+
+
+
+# --------------------------------------------- enum: FileName --------------------------------------------- #
+
+class FileName(Enum):
+    Template = 0
+
+
+# ---------------------------------------------------------------------------------------------------------- #
+~~~~
+
+
+#### - npf/new_python_file
+   - creates a python file with a default file formatting
+
+~~~~shell
+npf file_name
+# creates 'file_name.py'
+# also accepts relative path 'relative/path/to/file_name'
+
+# or
+new_python_file file_name
+~~~~
+generated file contents
+~~~~python
+# ------------------------------------------------- Imports ------------------------------------------------ #
+
+# System
+
+
+# Pip
+
+
+# Local
+
+
+# ---------------------------------------------------------------------------------------------------------- #
+
+
+
+# ----------------------------------------------- Public vars ---------------------------------------------- #
+
+
+
+
+# ---------------------------------------------- Private vars ---------------------------------------------- #
+
+
+
+
+# ---------------------------------------------- Private vars ---------------------------------------------- #
+
+
+
+
+# ---------------------------------------------- Private vars ---------------------------------------------- #
+
+
+
+
+# ---------------------------------------------------------------------------------------------------------- #
+~~~~
+
+
+#### - npfl/new_python_flow
+   - creates a python file with a flow-like formatting (check example)
+
+~~~~shell
+npfl file_name
+# creates 'file_name.py'
+# also accepts relative path 'relative/path/to/file_name'
+
+# or
+new_python_flow file_name
+~~~~
+generated file contents
+~~~~python
+# ------------------------------------------------- Imports ------------------------------------------------ #
+
+# System
+
+
+# Pip
+
+
+# Local
+
+
+# ---------------------------------------------------------------------------------------------------------- #
+
+
+
+# ------------------------------------------------- Methods ------------------------------------------------ #
+
+
+
+# -------------------------------------------------- Paths ------------------------------------------------- #
+
+
+
+
+# -------------------------------------------------- Vars -------------------------------------------------- #
+
+
+
+
+# -------------------------------------------------- Flow -------------------------------------------------- #
+
+
+
+# ---------------------------------------------------------------------------------------------------------- #
+~~~~
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #### - npa/new_python_api
   - pip uninstall && pip installl
