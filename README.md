@@ -30,7 +30,7 @@ pip3 install kcliutils
 
 ### 1. Package related
 
-#### - npp/new_python_package
+####  npp/new_python_package
   - Run in an empty folder with git checked out
   - Creates a new empty package, with default files, such as .gitignore, README.md, setup.py, demo.py, LICENSE, etc.
 
@@ -46,7 +46,7 @@ new_python_package package_name
 
 ![npp result](https://i.imgur.com/3UUMDjY.png)
 
-#### - upp/upgrade_python_package
+####  upp/upgrade_python_package
   - Run in an already existing project folder
   - Updates setup.py with dependencies, bumps version number
   - Updates install_dependencies.sh and requirements.txt
@@ -61,7 +61,7 @@ upp
 upgrade_python_package
 ~~~~
 
-#### - ppp/publish_python_package
+####  ppp/publish_python_package
   - Calls upp, publishes to pypi and instals the new version
 
 ~~~~shell
@@ -72,7 +72,7 @@ ppp "Optional commit message"
 publish_python_package "Optional commit message"
 ~~~~
 
-#### - prpipush/upgrade_push_install
+####  prpipush/upgrade_push_install
   - Same as ppp, but without publishing on pypi (for private, github-hosted packages)
 
 ~~~~shell
@@ -86,7 +86,7 @@ upgrade_push_install "Optional commit message"
 
 ### 2. Formatting
 
-#### - cl/clean_lines
+####  cl/clean_lines
   - Cleans the ending useless spaces from every line
 
 ~~~~shell
@@ -98,7 +98,7 @@ clean_lines
 ~~~~
 
 
-#### - migrate_comment_line_len
+####  migrate_comment_line_len
   - Updates the lengh of each separator comment line generated with the file generators from this package.
 
 ~~~~shell
@@ -110,7 +110,7 @@ migrate_comment_line_len Optional_length_which_defaults_to_your_settings
 
 ### 3. Git
 
-#### - psh/push
+####  psh/push
   - stages/commits everything and pushes to github
 
 ~~~~shell
@@ -122,7 +122,7 @@ push "Optional commit message"
 ~~~~
 
 
-#### - ftch/fetch
+####  ftch/fetch
   - git fetch
 
 ~~~~shell
@@ -134,7 +134,7 @@ fetch
 ~~~~
 
 
-#### - pll/pull
+####  pll/pull
   - git pull
 
 ~~~~shell
@@ -149,7 +149,7 @@ pull
 ### 4. Pip
 
 
-#### - pipu/pip_uninstall
+####  pipu/pip_uninstall
   - pip uninstall
 
 ~~~~shell
@@ -159,7 +159,7 @@ pip_uninstall PACKAGE_NAME
 ~~~~
 
 
-#### - pipi/pipiu/pip_install
+####  pipi/pipiu/pip_install
   - pip install -U
 
 ~~~~shell
@@ -171,7 +171,7 @@ pip_install PACKAGE_NAME
 ~~~~
 
 
-#### - pipir/pip_reinstall
+####  pipir/pip_reinstall
   - pip uninstall && pip install
 
 ~~~~shell
@@ -183,7 +183,7 @@ pip_reinstall PACKAGE_NAME
 
 ### 5. New files
 
-#### - npc/new_python_class
+####  npc/new_python_class
    - creates a python file with a class-like formatting
 
 ~~~~shell
@@ -196,7 +196,7 @@ new_python_class file_name
 ~~~~
 generated file contents
 ~~~~python
-# -------------------------------------------- Imports ------------------------------------------- #
+# ------------------------------------------- Imports ------------------------------------------ #
 
 # System
 
@@ -207,15 +207,15 @@ generated file contents
 # Local
 
 
-# ------------------------------------------------------------------------------------------------ #
+# ---------------------------------------------------------------------------------------------- #
 
 
 
-# --------------------------------------- class: TestClass --------------------------------------- #
+# -------------------------------------- class: TestClass -------------------------------------- #
 
 class TestClass:
 
-    # ----------------------------------------- Init ----------------------------------------- #
+    # ---------------------------------------- Init ---------------------------------------- #
 
     def __init__(
         self
@@ -223,31 +223,31 @@ class TestClass:
         return
 
 
-    # ----------------------------------- Public properties ---------------------------------- #
+    # ---------------------------------- Public properties --------------------------------- #
 
 
 
 
-    # ------------------------------------ Public methods ------------------------------------ #
+    # ----------------------------------- Public methods ----------------------------------- #
 
 
 
 
-    # ---------------------------------- Private properties ---------------------------------- #
+    # --------------------------------- Private properties --------------------------------- #
 
 
 
 
-    # ------------------------------------ Private methods ----------------------------------- #
+    # ----------------------------------- Private methods ---------------------------------- #
 
 
 
 
-# ------------------------------------------------------------------------------------------------ #
+# ---------------------------------------------------------------------------------------------- #
 ~~~~
 
 
-#### - npa/new_python_api
+####  npa/new_python_api
    - creates a python file with a api-like formatting (conforming [ksimpleapi](https://github.com/kkristof200/py_simpleapi))
 
 ~~~~shell
@@ -260,7 +260,7 @@ new_python_api file_name
 ~~~~
 generated file contents
 ~~~~python
-# -------------------------------------------- Imports ------------------------------------------- #
+# ------------------------------------------- Imports ------------------------------------------ #
 
 # System
 from typing import Optional, Dict
@@ -271,15 +271,15 @@ from ksimpleapi import Api
 # Local
 
 
-# ------------------------------------------------------------------------------------------------ #
+# ---------------------------------------------------------------------------------------------- #
 
 
 
-# ---------------------------------------- class: FileName --------------------------------------- #
+# --------------------------------------- class: FileName -------------------------------------- #
 
 class FileName(Api):
 
-# --------------------------------------- Overrides -------------------------------------- #
+# -------------------------------------- Overrides ------------------------------------- #
 
     @classmethod
     def extra_headers(cls) -> Optional[Dict[str, any]]:
@@ -288,31 +288,31 @@ class FileName(Api):
         }
 
 
-    # ----------------------------------- Public properties ---------------------------------- #
+    # ---------------------------------- Public properties --------------------------------- #
 
 
 
 
-    # ------------------------------------ Public methods ------------------------------------ #
+    # ----------------------------------- Public methods ----------------------------------- #
 
 
 
 
-    # ---------------------------------- Private properties ---------------------------------- #
+    # --------------------------------- Private properties --------------------------------- #
 
 
 
 
-    # ------------------------------------ Private methods ----------------------------------- #
+    # ----------------------------------- Private methods ---------------------------------- #
 
 
 
 
-# ------------------------------------------------------------------------------------------------ #
+# ---------------------------------------------------------------------------------------------- #
 ~~~~
 
 
-#### - npe/new_python_enum
+####  npe/new_python_enum
    - creates a python file with a enum-like formatting
 
 ~~~~shell
@@ -325,26 +325,26 @@ new_python_enum file_name
 ~~~~
 generated file contents
 ~~~~python
-# -------------------------------------------- Imports ------------------------------------------- #
+# ------------------------------------------- Imports ------------------------------------------ #
 
 # System
 from enum import Enum
 
-# ------------------------------------------------------------------------------------------------ #
+# ---------------------------------------------------------------------------------------------- #
 
 
 
-# ---------------------------------------- enum: FileName ---------------------------------------- #
+# --------------------------------------- enum: FileName --------------------------------------- #
 
 class FileName(Enum):
     Template = 0
 
 
-# ------------------------------------------------------------------------------------------------ #
+# ---------------------------------------------------------------------------------------------- #
 ~~~~
 
 
-#### - npf/new_python_file
+####  npf/new_python_file
    - creates a python file with a default file formatting
 
 ~~~~shell
@@ -357,7 +357,7 @@ new_python_file file_name
 ~~~~
 generated file contents
 ~~~~python
-# -------------------------------------------- Imports ------------------------------------------- #
+# ------------------------------------------- Imports ------------------------------------------ #
 
 # System
 
@@ -368,35 +368,35 @@ generated file contents
 # Local
 
 
-# ------------------------------------------------------------------------------------------------ #
+# ---------------------------------------------------------------------------------------------- #
 
 
 
-# ------------------------------------------ Public vars ----------------------------------------- #
-
-
-
-
-# ----------------------------------------- Private vars ----------------------------------------- #
+# ----------------------------------------- Public vars ---------------------------------------- #
 
 
 
 
-# ----------------------------------------- Private vars ----------------------------------------- #
+# ---------------------------------------- Private vars ---------------------------------------- #
 
 
 
 
-# ----------------------------------------- Private vars ----------------------------------------- #
+# ---------------------------------------- Private vars ---------------------------------------- #
 
 
 
 
-# ------------------------------------------------------------------------------------------------ #
+# ---------------------------------------- Private vars ---------------------------------------- #
+
+
+
+
+# ---------------------------------------------------------------------------------------------- #
 ~~~~
 
 
-#### - npfl/new_python_flow
+####  npfl/new_python_flow
    - creates a python file with a flow-like formatting (check example)
 
 ~~~~shell
@@ -409,7 +409,7 @@ new_python_flow file_name
 ~~~~
 generated file contents
 ~~~~python
-# -------------------------------------------- Imports ------------------------------------------- #
+# ------------------------------------------- Imports ------------------------------------------ #
 
 # System
 
@@ -420,33 +420,33 @@ generated file contents
 # Local
 
 
-# ------------------------------------------------------------------------------------------------ #
+# ---------------------------------------------------------------------------------------------- #
 
 
 
-# -------------------------------------------- Methods ------------------------------------------- #
+# ------------------------------------------- Methods ------------------------------------------ #
 
 
 
-# --------------------------------------------- Paths -------------------------------------------- #
-
-
-
-
-# --------------------------------------------- Vars --------------------------------------------- #
+# -------------------------------------------- Paths ------------------------------------------- #
 
 
 
 
-# --------------------------------------------- Flow --------------------------------------------- #
+# -------------------------------------------- Vars -------------------------------------------- #
 
 
 
-# ------------------------------------------------------------------------------------------------ #
+
+# -------------------------------------------- Flow -------------------------------------------- #
+
+
+
+# ---------------------------------------------------------------------------------------------- #
 ~~~~
 
 
-#### - nps/new_python_subpackage
+####  nps/new_python_subpackage
   - creates a new subpackage at the desired relative path
 
 ~~~~shell
