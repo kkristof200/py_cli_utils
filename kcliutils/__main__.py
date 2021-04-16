@@ -29,6 +29,8 @@ def upgrade_push_install():
 def clean_lines():
     Flows.clean_lines(ensure_path=False)
 
+def migrate_comment_line_len():
+    Flows.migrate_comment_line_len(Utils.get_arg(surpress_crash=True))
 
 # Git
 

@@ -6,6 +6,7 @@ from datetime import datetime
 # Local
 from .core_texts import license
 from .utils import multi_replace
+from .file_key import FileKey
 
 # ---------------------------------------------------------------------------------------------------------------------------------------- #
 
@@ -17,8 +18,8 @@ def new_license(author_name: str) -> str:
     return multi_replace(
         license,
         {
-            '[YEAR]': datetime.utcnow().year,
-            '[AUTHOR_NAME]': author_name
+            FileKey.YEAR: datetime.utcnow().year,
+            FileKey.AUTHOR_NAME: author_name
         }
     )
 

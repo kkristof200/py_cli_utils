@@ -130,5 +130,5 @@ dmypy.json
 .pyre/
 
 # VSCode
-.vscode/
+.vscode
 '''.strip()

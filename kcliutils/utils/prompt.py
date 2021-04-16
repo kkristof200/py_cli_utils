@@ -4,7 +4,7 @@
 from typing import List, Optional, Tuple, Union
 
 # Pip
-from bullet import SlidePrompt, Bullet, Input, colors
+from bullet import SlidePrompt, Bullet, Input, Numbers, colors
 
 # Local
 from .constants import Constants
@@ -35,16 +35,20 @@ class Prompt:
     def config(
         cls,
         default_author: Optional[str] = None,
-        default_git_message: Optional[str] = None
-    ) -> Tuple[Optional[str], float, float]:
-        author, git_message, min_v, max_v = cls.__prompt([
+        default_git_message: Optional[str] = None,
+        default_spaces_per_tab: Optional[int] = None,
+        default_comment_line_length: Optional[int] = None
+    ) -> Tuple[Optional[str], Optional[str], float, float, int, int]:
+        author, git_message, min_v, max_v, spaces_per_tab, comment_line_length = cls.__prompt([
             (cls.__get_author_prompt(default_author=default_author), str),
             (cls.__get_default_git_message_prompt(default_message=default_git_message), str),
             (cls.__get_min_default_python_version_prompt(), float),
-            (cls.__get_max_default_python_version_prompt(), float)
+            (cls.__get_max_default_python_version_prompt(), float),
+            (cls.__get_spaces_per_tab(default_spaces_per_tab), int),
+            (cls.__get_comment_line_length(default_comment_line_length), int)
         ])
 
-        return author or default_author, git_message or default_git_message, min_v, max_v
+        return (author or default_author), (git_message or default_git_message), min_v, max_v, spaces_per_tab, comment_line_length
 
     @classmethod
     def new_package(
@@ -71,19 +75,21 @@ class Prompt:
     # Prompts
     @staticmethod
     def __prompt(
-        prompts_with_types: Union[List[Tuple[Union[Bullet, Input], any]], Tuple[Union[Bullet, Input], any]],
+        prompts_with_types_and_default_values: Union[List[Tuple[Union[Bullet, Input, Numbers], any, any]], Tuple[Union[Bullet, Input, Numbers], any, any]],
         summarize: bool = True
     ) -> Union[List[any], any]:
-        if not isinstance(prompts_with_types, list):
-            prompts_with_types = [prompts_with_types]
+        if not isinstance(prompts_with_types_and_default_values, list):
+            prompts_with_types_and_default_values = [prompts_with_types_and_default_values]
 
-        prompts = [p[0] for p in prompts_with_types]
-        types = [p[1] for p in prompts_with_types]
+        prompts = [p[0] for p in prompts_with_types_and_default_values]
+        types = [p[1] for p in prompts_with_types_and_default_values]
+        default_values = [p[2] if len(p) > 2 else None for p in prompts_with_types_and_default_values]
 
         cli = SlidePrompt(prompts)
         all_res = cli.launch()
         all_res = [res[1] if not isinstance(res[1], tuple) else res[1][0] for res in all_res]
-        results = [res if isinstance(res, types[i]) else types[i](res) for i, res in enumerate(all_res)]
+        all_res = [res or default_values[i] for i, res in enumerate(all_res)]
+        results = [res if isinstance(res, types[i]) or res is None else types[i](res) for i, res in enumerate(all_res)]
 
         if summarize:
             cli.summarize()
@@ -126,6 +132,22 @@ class Prompt:
             default=default_message,
             word_color=colors.foreground["yellow"],
             pattern='.*'
+        )
+
+    @staticmethod
+    def __get_spaces_per_tab(default_value: Optional[int] = None) -> Numbers:
+        return Input(
+            "How many spaces per tab do you use?: ",
+            default=str(default_value),
+            word_color=colors.foreground["yellow"]
+        )
+
+    @staticmethod
+    def __get_comment_line_length(default_value: Optional[int] = None) -> Numbers:
+        return Input(
+            "Length of a separator comment: ",
+            default=str(default_value),
+            word_color=colors.foreground["yellow"]
         )
 
     @classmethod

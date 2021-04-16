@@ -12,7 +12,8 @@ from kdependencies import Dependencies, InstalledPackage
 from .constants import Constants
 from .utils import Utils
 from .prompt import Prompt
-from .texts import new_api, new_class, new_json_class, new_enum, new_license, file, flow, gitignore, new_readme, updated_readme, new_setup, updated_setup, new_install_dependencies_file, current_version_number, new_requirements_file
+from .texts import new_api, new_class, new_json_class, new_enum, new_license, new_file, new_flow, gitignore, new_readme, updated_readme, new_setup, updated_setup, new_install_dependencies_file, current_version_number, new_requirements_file
+from .texts.utils import comment_line
 
 # ---------------------------------------------------------------------------------------------------------------------------------------- #
 
@@ -36,6 +37,7 @@ class Flows:
         if not os.path.exists(Utils.setup_file_path()):
             Utils.create_file(Utils.setup_file_path(), new_setup(
                 package_name=package_name,
+                tab_size=config.spaces_per_tab,
                 author=config.default_author,
                 git_url=Utils.get_git_url(),
                 min_python_version=config.default_min_python_version,
@@ -73,7 +75,7 @@ class Flows:
 
         print('Updating setup.py')
         old_setup_str = strio.load(Utils.setup_file_path())
-        updated_setup_str = updated_setup(old_setup_str, dependencies)
+        updated_setup_str = updated_setup(old_setup_str, Utils.get_config(True).spaces_per_tab, dependencies)
         Utils.create_file(Utils.setup_file_path(), updated_setup_str, overwrite=True)
 
         print('Updating README.md')
@@ -158,11 +160,37 @@ class Flows:
                 with open(p, 'w') as f:
                     f.write(text)
 
+    @classmethod
+    def migrate_comment_line_len(
+        cls,
+        line_len: Optional[str]
+    ):
+        new_command_line_len = int(line_len) if line_len else Utils.get_config(True).comment_line_length
+
+        for p in kpath.file_paths_from_folder(os.getcwd(), allowed_extensions=['.py']):
+            s = strio.load_sync(p)
+
+            for line in s.split('\n'):
+                indent_spaces = len(line) - len(line.lstrip())
+                line = line.strip()
+
+                if line.startswith('# {}'.format(Constants.COMMENT_LINE_FILLER_CHAR)):
+                    comment = line.replace('#', '').replace(Constants.COMMENT_LINE_FILLER_CHAR, '').strip()
+
+                    s = s.replace(line, comment_line(
+                        comment,
+                        line_len=new_command_line_len,
+                        filler_char=Constants.COMMENT_LINE_FILLER_CHAR,
+                        tabs=1,
+                        tab_size=indent_spaces
+                    ))
+
+            strio.save_sync(p, s)
 
     # Git
 
     @classmethod
-    def push(cls, message: Optional[str] = None, ensure_path: bool = False, clean_lines: bool = True):
+    def push(cls, message: Optional[str] = None, ensure_path: bool = False, clean_lines: bool = False):
         if ensure_path:
             Utils.ensure_and_get_path()
 
@@ -254,7 +282,8 @@ class Flows:
     @staticmethod
     def create_new_api(name: str, open: bool = True):
         _, file_path, _, _class = Utils.get_paths_name_class(name)
-        Utils.create_file(file_path, new_api(_class))
+        config = Utils.get_config(True)
+        Utils.create_file(file_path, new_api(_class, tab_size=config.spaces_per_tab, comment_line_len=config.comment_line_length))
 
         if open:
             Utils.vscode_open(file_path)
@@ -262,7 +291,8 @@ class Flows:
     @staticmethod
     def create_new_class(name: str, open: bool = True):
         _, file_path, _, _class = Utils.get_paths_name_class(name)
-        Utils.create_file(file_path, new_class(_class))
+        config = Utils.get_config(True)
+        Utils.create_file(file_path, new_class(_class, tab_size=config.spaces_per_tab, comment_line_len=config.comment_line_length))
 
         if open:
             Utils.vscode_open(file_path)
@@ -272,7 +302,8 @@ class Flows:
         name = name or json_path.split(os.sep)[-1].split('.')[0]
 
         _, file_path, _, _class = Utils.get_paths_name_class(name)
-        Utils.create_file(file_path, new_json_class(_class, kjson.load(json_path)))
+        config = Utils.get_config(True)
+        Utils.create_file(file_path, new_json_class(_class, kjson.load(json_path), tab_size=config.spaces_per_tab, comment_line_len=config.comment_line_length))
 
         if open:
             Utils.vscode_open(file_path)
@@ -281,7 +312,8 @@ class Flows:
     def create_new_enum(name: str, open: bool = True):
         _, file_path, _, _class = Utils.get_paths_name_class(name)
 
-        Utils.create_file(file_path, new_enum(_class))
+        config = Utils.get_config(True)
+        Utils.create_file(file_path, new_enum(_class, tab_size=config.spaces_per_tab, comment_line_len=config.comment_line_length))
 
         if open:
             Utils.vscode_open(file_path)
@@ -290,7 +322,8 @@ class Flows:
     def create_new_file(name: str, open: bool = True):
         _, file_path, _, _ = Utils.get_paths_name_class(name)
 
-        Utils.create_file(file_path, file)
+        config = Utils.get_config(True)
+        Utils.create_file(file_path, new_file(tab_size=config.spaces_per_tab, comment_line_len=config.comment_line_length))
 
         if open:
             Utils.vscode_open(file_path)
@@ -299,7 +332,8 @@ class Flows:
     def create_new_flow(name: str, open: bool = True):
         _, file_path, _, _ = Utils.get_paths_name_class(name)
 
-        Utils.create_file(file_path, flow)
+        config = Utils.get_config(True)
+        Utils.create_file(file_path, new_flow(tab_size=config.spaces_per_tab, comment_line_len=config.comment_line_length))
 
         if open:
             Utils.vscode_open(file_path)

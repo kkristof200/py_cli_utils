@@ -197,27 +197,43 @@ class Utils:
 
         return '{}/{}'.format(git_username, git_repo_name)
 
-
-    # Config
-
     @classmethod
     def get_config(cls, create_new_if_none: bool = True) -> Optional[Config]:
         config = Config.load(cls.config_path())
 
+        if config:
+            try:
+                config.validate()
+            except:
+                if create_new_if_none:
+                    print("Config is outdated. Create new one. Old config path '{}'".format(cls.config_path()))
+
+                config = None
+
         return config if config else cls.__create_new_config() if create_new_if_none else None
 
     @classmethod
-    def __create_new_config(cls) -> Config:
-        default_author, default_commit_message, min_v, max_v = Prompt.config(
-            default_author=cls.__get_local_git_username() or cls.__get_global_git_username(),
-            default_git_message=Constants.DEFAULT_COMMIT_MESSAGE
+    def __create_new_config(
+        cls,
+        default_author: Optional[str] = None,
+        default_git_message: Optional[str] = None,
+        default_spaces_per_tab: Optional[int] = None,
+        default_comment_line_length: Optional[int] = None,
+    ) -> Config:
+        default_author, default_commit_message, min_v, max_v, spaces_per_tab, comment_line_length = Prompt.config(
+            default_author=default_author or cls.__get_local_git_username() or cls.__get_global_git_username(),
+            default_git_message=default_git_message or Constants.DEFAULT_COMMIT_MESSAGE,
+            default_spaces_per_tab=default_spaces_per_tab or Constants.DEFAULT_SPACES_PER_TAB,
+            default_comment_line_length=default_comment_line_length or Constants.DEFAULT_COMMENT_LINE_LENGTH
         )
 
         config = Config(
             default_author=default_author,
             default_commit_message=default_commit_message,
             default_min_python_version=min_v,
-            default_max_python_version=max_v
+            default_max_python_version=max_v,
+            spaces_per_tab=spaces_per_tab,
+            comment_line_length=comment_line_length
         )
 
         config.save(cls.config_path())

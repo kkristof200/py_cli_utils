@@ -7,8 +7,8 @@ from .readme import new_readme, updated_readme
 from .setup import new_setup, updated_setup, current_version_number
 from .install_dependencies import new_install_dependencies_file
 from .requirements import new_requirements_file
+from .file import new_file
+from .flow import new_flow
 
-from .core_texts import file, flow, gitignore
-from .core_texts import file as new_file
-from .core_texts import flow as new_flow
+from .core_texts import gitignore
 from .core_texts import gitignore as new_gitignore

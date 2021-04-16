@@ -5,7 +5,7 @@ import os
 
 # Local
 from .utils import Utils
-from .texts import new_class, new_enum, new_license, file, flow, gitignore, readme, setup
+from .texts import new_class, new_enum, new_license, new_file, new_flow, gitignore, readme
 
 # ---------------------------------------------------------------------------------------------------------------------------------------- #
 
@@ -15,23 +15,23 @@ from .texts import new_class, new_enum, new_license, file, flow, gitignore, read
 
 def create_new_class(name: str):
     _, file_path, _, _class = Utils.get_paths_name_class(name)
-
-    Utils.create_file(file_path, new_class(_class))
+    config = Utils.get_config(True)
+    Utils.create_file(file_path, new_class(_class, tab_size=config.spaces_per_tab, comment_line_len=config.comment_line_length))
 
 def create_new_enum(name: str):
     _, file_path, _, _class = Utils.get_paths_name_class(name)
-
-    Utils.create_file(file_path, new_enum(_class))
+    config = Utils.get_config(True)
+    Utils.create_file(file_path, new_enum(_class, tab_size=config.spaces_per_tab, comment_line_len=config.comment_line_length))
 
 def create_new_file(name: str):
     _, file_path, _, _ = Utils.get_paths_name_class(name)
-
-    Utils.create_file(file_path, file)
+    config = Utils.get_config(True)
+    Utils.create_file(file_path, new_file(tab_size=config.spaces_per_tab, comment_line_len=config.comment_line_length))
 
 def create_new_flow(name: str):
     _, file_path, _, _ = Utils.get_paths_name_class(name)
-
-    Utils.create_file(file_path, flow)
+    config = Utils.get_config(True)
+    Utils.create_file(file_path, new_flow(tab_size=config.spaces_per_tab, comment_line_len=config.comment_line_length))
 
 def create_new_gitignore():
     Utils.create_file(Utils.gitignore_path(), gitignore)

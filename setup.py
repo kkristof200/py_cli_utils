@@ -10,7 +10,7 @@ else:
 
 setuptools.setup(
     name="kcliutils",
-    version="0.0.52",
+    version="0.1.0",
     author="Kristof",
     description="kcliutils",
     long_description=long_description,
@@ -19,8 +19,8 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     install_requires=[
         'bullet>=2.2.0',
-        'jsoncodable>=0.0.12',
-        'kcu>=0.0.65',
+        'jsoncodable>=0.1.2',
+        'kcu>=0.0.66',
         'kdependencies>=0.0.4'
     ],
     classifiers=[
@@ -55,6 +55,7 @@ setuptools.setup(
             'clean_lines=kcliutils.__main__:clean_lines',
             'cl=kcliutils.__main__:clean_lines',
 
+            'migrate_comment_line_len=kcliutils.__main__:migrate_comment_line_len',
 
             # Git
 

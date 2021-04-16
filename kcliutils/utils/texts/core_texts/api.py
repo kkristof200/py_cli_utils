@@ -1,5 +1,5 @@
 api = '''
-# --------------------------------------------------------------- Imports ---------------------------------------------------------------- #
+[COMMENT_LINE_IMPORTS]
 
 # System
 from typing import Optional, Dict
@@ -10,42 +10,42 @@ from ksimpleapi import Api
 # Local
 
 
-# ---------------------------------------------------------------------------------------------------------------------------------------- #
+[COMMENT_LINE]
 
 
 
-[CLASS_NAME_COMMENT_LINE]
+[COMMENT_LINE_CLASS_NAME]
 
 class [CLASS_NAME](Api):
 
-    # ---------------------------------------------------------- Overrides ----------------------------------------------------------- #
+[COMMENT_LINE_OVERRIDES]
 
-    @classmethod
-    def extra_headers(cls) -> Optional[Dict[str, any]]:
-        return {
+[TAB]@classmethod
+[TAB]def extra_headers(cls) -> Optional[Dict[str, any]]:
+[TAB][TAB]return {
 
-        }
-
-
-    # ------------------------------------------------------ Public properties ------------------------------------------------------- #
+[TAB][TAB]}
 
 
-
-
-    # -------------------------------------------------------- Public methods -------------------------------------------------------- #
+[TAB][COMMENT_LINE_PUBLIC_PROPERTIES]
 
 
 
 
-    # ------------------------------------------------------ Private properties ------------------------------------------------------ #
+[TAB][COMMENT_LINE_PUBLIC_METHODS]
 
 
 
 
-    # ------------------------------------------------------- Private methods -------------------------------------------------------- #
+[TAB][COMMENT_LINE_PRIVATE_PROPERTIES]
 
 
 
 
-# ---------------------------------------------------------------------------------------------------------------------------------------- #
+[TAB][COMMENT_LINE_PRIVATE_METHODS]
+
+
+
+
+[COMMENT_LINE]
 '''.strip()

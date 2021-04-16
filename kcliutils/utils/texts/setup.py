@@ -11,6 +11,7 @@ from kcu import strings, strio
 # Local
 from .core_texts import setup
 from .utils import multi_replace
+from .file_key import FileKey
 
 # ---------------------------------------------------------------------------------------------------------------------------------------- #
 
@@ -20,6 +21,7 @@ from .utils import multi_replace
 
 def updated_setup(
     old_setup: str,
+    tab_size: int,
     dependencies: Optional[List[str]] = None,
     version_bump_type: int = 0
 ) -> str:
@@ -29,7 +31,7 @@ def updated_setup(
 
             old_setup = old_setup.replace(
                 old_dependencies_str,
-                'install_requires=[{}'.format(__dependencies_str(dependencies))
+                'install_requires=[{}'.format(__dependencies_str(dependencies, tab_size=tab_size))
             )
         except Exception as e:
             print(e)
@@ -55,6 +57,7 @@ def current_version_number(setup_file_path: str) -> Optional[str]:
 
 def new_setup(
     package_name: str,
+    tab_size: int,
     min_python_version: Optional[float] = None,
     max_python_version: Optional[float] = None,
     package_version: Optional[str] = None,
@@ -67,16 +70,20 @@ def new_setup(
     min_python_version = min_python_version or 3.4
     max_python_version = max_python_version or 3.9
 
-    return multi_replace(setup, {
-        '[PACKAGE_NAME]': package_name,
-        '[AUTHOR]': author or '',
-        '[GIT_URL]': git_url or '',
-        '[PACKAGE_VERSION]': package_version or '0.0.0',
-        '[DEPENDENCIES]': __dependencies_str(dependencies) if dependencies else '',
-        '[SHORT_DESCRIPTION]': short_description or package_name,
-        '[PYTHON_CLASSIFIERS]': __get_python_classifiers(min_python_version, max_python_version, license_str),
-        '[MIN_PYTHON_VERSION]': min_python_version,
-    })
+    return multi_replace(
+        setup,
+        {
+            FileKey.PACKAGE_NAME: package_name,
+            FileKey.AUTHOR: author or '',
+            FileKey.GIT_URL: git_url or '',
+            FileKey.PACKAGE_VERSION: package_version or '0.0.0',
+            FileKey.DEPENDENCIES: __dependencies_str(dependencies, tab_size=tab_size) if dependencies else '',
+            FileKey.SHORT_DESCRIPTION: short_description or package_name,
+            FileKey.PYTHON_CLASSIFIERS: __get_python_classifiers(min_python_version, max_python_version, tab_size, license_str),
+            FileKey.MIN_PYTHON_VERSION: min_python_version,
+        },
+        tab_size=tab_size
+    )
 
 
 # ----------------------------------------------------------- Private methods ------------------------------------------------------------ #
@@ -90,6 +97,7 @@ def __extract_current_version_number(setup_file_str: str) -> Optional[str]:
 def __get_python_classifiers(
     min_python_version: float,
     max_python_version: float,
+    tab_size: int,
     license_str: Optional[str] = 'License :: OSI Approved :: MIT License'
 ) -> str:
     current_version = min_python_version - 0.1
@@ -102,12 +110,15 @@ def __get_python_classifiers(
     if license_str:
         classifiers.append(license_str)
 
-    return ',\n{}'.format(8*' ').join(['\'{}\''.format(c) for c in classifiers])
+    return ',\n{}'.format(2*tab_size*' ').join(['\'{}\''.format(c) for c in classifiers])
 
-def __dependencies_str(dependencies: List[InstalledPackage]) -> str:
+def __dependencies_str(
+    dependencies: List[InstalledPackage],
+    tab_size: int
+) -> str:
     return '\n{}{}\n{}'.format(
-        8*' ',
-        ',\n{}'.format(8*' ').join(
+        2*tab_size*' ',
+        ',\n{}'.format(2*tab_size*' ').join(
             ['\'{}{}\''.format(d.get_install_name(), '>={}'.format(d.version) if not d.private else '') for d in dependencies]
         ),
         4*' '

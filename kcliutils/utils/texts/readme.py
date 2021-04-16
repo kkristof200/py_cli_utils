@@ -11,6 +11,7 @@ from kcu import strings
 # Local
 from .core_texts import readme
 from .utils import multi_replace
+from .file_key import FileKey
 
 # ---------------------------------------------------------------------------------------------------------------------------------------- #
 
@@ -60,10 +61,10 @@ def new_readme(
     return multi_replace(
         readme,
         {
-            '[PACKAGE_NAME]': package_name,
-            '[SHIELDS]': __create_shields(package_name, full_repo_name) if full_repo_name else '',
-            '[DESCRIPTION]': description or '',
-            '[DEPENDENCIES]': ', '.join(
+            FileKey.PACKAGE_NAME: package_name,
+            FileKey.SHIELDS: __create_shields(package_name, full_repo_name) if full_repo_name else '',
+            FileKey.DESCRIPTION: description or '',
+            FileKey.DEPENDENCIES: ', '.join(
                 ['[{}]({})'.format(
                     d.name if not d.private else d.home_url.split(os.sep)[-1], 'https://pypi.org/project/{}'.format(d.name) if not d.private else d.home_url)
                     for d in dependencies

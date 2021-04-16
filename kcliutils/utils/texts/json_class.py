@@ -7,6 +7,8 @@ import string
 # Local
 from .core_texts import json_class
 from .utils import comment_line, multi_replace
+from .file_key import FileKey
+from .file_value import FileValue
 
 # ---------------------------------------------------------------------------------------------------------------------------------------- #
 
@@ -14,14 +16,24 @@ from .utils import comment_line, multi_replace
 
 # ------------------------------------------------------------ Public methods ------------------------------------------------------------ #
 
-def new_json_class(class_name: str, d: Dict[str, any]) -> str:
+def new_json_class(
+    class_name: str,
+    d: Dict[str, any],
+    tab_size: int,
+    comment_line_len: int
+) -> str:
     return multi_replace(
         json_class,
         {
-            '[CLASS_NAME]': class_name,
-            '[CLASS_NAME_COMMENT_LINE]': comment_line('class: {}'.format(class_name)),
-            '[INIT_VARS]': __init_vars_str(d)
-        }
+            FileKey.CLASS_NAME: class_name,
+            FileKey.COMMENT_LINE_CLASS_NAME: comment_line(
+                FileValue.COMMENT_LINE_CLASS_NAME.value.format(class_name),
+                line_len=comment_line_len
+            ),
+            FileKey.INIT_JSON_VARS: __init_vars_str(d, tab_size=tab_size)
+        },
+        tab_size=tab_size,
+        comment_line_len=comment_line_len
     )
 
 
@@ -29,7 +41,7 @@ def new_json_class(class_name: str, d: Dict[str, any]) -> str:
 
 def __init_vars_str(
     d: Dict[str, any],
-    indent_spaces: int = 4
+    tab_size: int
 ) -> str:
     init_strs = []
     key_pairs = {k:__formatted_key(k) for k in d.keys()}
@@ -38,7 +50,7 @@ def __init_vars_str(
     for k, fk in key_pairs.items():
         init_strs.append(
             '{}self.{}{} = d.get(\'{}\')'.format(
-                ' ' * 2 * indent_spaces,
+                ' ' * 2 * tab_size,
                 fk,
                 ' ' * (longest - len(fk)),
                 k
