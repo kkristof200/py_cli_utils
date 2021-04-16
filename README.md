@@ -32,7 +32,7 @@ pip3 install kcliutils
 
 #### - npp/new_python_package
 ##### description: Run in an empty folder with git checked out
-Creates a new empty package, with default files, such as .gitignore, README.md, setup.py, demo.py, LICENSE, etc.
+##### Creates a new empty package, with default files, such as .gitignore, README.md, setup.py, demo.py, LICENSE, etc.
 
 ~~~~shell
 # cd to desired folder with .git in it
@@ -48,10 +48,10 @@ This will generate
 
 #### - upp/upgrade_python_package
 ##### description: Run in an already existing project folder
-Updates setup.py with dependencies, bumps version number
-Updates install_dependencies.sh and requirements.txt
-Updates readme with dependencies, copies the contents of 'demo.py' to the usage section of the reeadme
-NOTE: to make this work properly, the packege had to be created with npp.
+##### Updates setup.py with dependencies, bumps version number
+##### Updates install_dependencies.sh and requirements.txt
+##### Updates readme with dependencies, copies the contents of 'demo.py' to the usage section of the reeadme
+##### NOTE: to make this work properly, the packege had to be created with npp.
 
 ~~~~shell
 # cd to desired folder with .git in it
