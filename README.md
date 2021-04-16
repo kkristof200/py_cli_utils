@@ -28,7 +28,7 @@ pip3 install kcliutils
 
 ## How to use
 
-### Package related
+### 1. Package related
 
 #### npp/new_python_package
 Run in an empty folder with git checked out
@@ -43,6 +43,7 @@ new_python_package package_name
 ~~~~
 
 This will generate
+
 ![npp result](https://i.imgur.com/3UUMDjY.png)
 
 #### upp/upgrade_python_package
@@ -83,7 +84,7 @@ upgrade_push_install "Optional commit message"
 ~~~~
 
 
-### Formatting
+### 2. Formatting
 
 #### cl/clean_lines
 Cleans the ending useless spaces from every line
@@ -107,7 +108,7 @@ migrate_comment_line_len Optional_length_which_defaults_to_your_settings
 ~~~~
 
 
-### Git
+### 3. Git
 
 #### psh/push
 stages/commits everything and pushes to github
@@ -145,7 +146,7 @@ pull
 ~~~~
 
 
-### Pip
+### 4. Pip
 
 
 #### pipu/pip_uninstall
@@ -180,7 +181,7 @@ pip_reinstall PACKAGE_NAME
 ~~~~
 
 
-### New files
+### 5. New files
 
 #### npc/new_python_class
 creates a python file with a class-like formatting
