@@ -183,6 +183,17 @@ pip_reinstall PACKAGE_NAME
 
 ### 5. New files
 
+####  pyreqs/python_requirements
+   - creates a requirements.txt file with all the used dependencies
+
+~~~~shell
+pyreqs
+# creates 'requirements.txt'
+# or
+python_requirements
+~~~~
+
+
 ####  npc/new_python_class
    - creates a python file with a class-like formatting
 

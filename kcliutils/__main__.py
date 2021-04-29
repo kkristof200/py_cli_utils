@@ -58,6 +58,9 @@ def reinstall():
 
 # New files
 
+def create_requirements_file():
+    Flows.create_requirements_file(open=False)
+
 def create_install_file():
     Flows.create_install_file()
 
