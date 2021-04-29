@@ -14,7 +14,7 @@ from ksimpleapi import Api
 
 
 
-[COMMENT_LINE_CLASS_NAME]
+[TAB][COMMENT_LINE_CLASS_NAME]
 
 class [CLASS_NAME](Api):
 
