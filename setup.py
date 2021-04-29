@@ -91,6 +91,9 @@ setuptools.setup(
             'python_requirements=kcliutils.__main__:create_requirements_file',
             'pyreqs=kcliutils.__main__:create_requirements_file',
 
+            'create_python_install_file=kcliutils.__main__:create_install_file',
+            'pif=kcliutils.__main__:create_install_file',
+
             'new_python_api=kcliutils.__main__:create_new_api',
             'npa=kcliutils.__main__:create_new_api',
 

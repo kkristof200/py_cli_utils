@@ -62,7 +62,7 @@ def create_requirements_file():
     Flows.create_requirements_file(open=False)
 
 def create_install_file():
-    Flows.create_install_file()
+    Flows.create_install_file(open=False)
 
 def create_new_api():
     Flows.create_new_api(Utils.get_arg())

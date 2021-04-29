@@ -194,6 +194,17 @@ python_requirements
 ~~~~
 
 
+####  pif/create_python_install_file
+   - creates an install_dependencies.sh file with all the used dependencies
+
+~~~~shell
+pif
+# creates 'install_dependencies.sh'
+# or
+create_python_install_file
+~~~~
+
+
 ####  npc/new_python_class
    - creates a python file with a class-like formatting
 

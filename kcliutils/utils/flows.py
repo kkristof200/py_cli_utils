@@ -267,6 +267,7 @@ class Flows:
     @staticmethod
     def create_install_file(dependencies: Optional[List[InstalledPackage]] = None, open: bool = True):
         file_path = Utils.install_dependencies_path()
+        dependencies = dependencies or [d for d in Dependencies.get(os.getcwd()) if not d.invalid]
 
         if not dependencies:
             if os.path.exists(file_path):
