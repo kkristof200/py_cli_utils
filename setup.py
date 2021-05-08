@@ -10,7 +10,7 @@ else:
 
 setuptools.setup(
     name="kcliutils",
-    version="0.1.8",
+    version="0.1.9",
     author="Kristof",
     description="kcliutils",
     long_description=long_description,
@@ -19,7 +19,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     install_requires=[
         'bullet>=2.2.0',
-        'jsoncodable>=0.1.8',
+        'jsoncodable>=0.1.7',
         'kcu>=0.0.66',
         'kdependencies>=0.0.4'
     ],
