@@ -35,7 +35,7 @@ def migrate_comment_line_len():
 # Git
 
 def push():
-    Flows.push()
+    Flows.push(Utils.get_arg(surpress_crash=True))
 
 def fetch():
     Flows.fetch()
