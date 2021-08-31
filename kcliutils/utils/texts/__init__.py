@@ -10,5 +10,8 @@ from .requirements import new_requirements_file
 from .file import new_file
 from .flow import new_flow
 
+from .file_consts import FileConsts
+from .all_file_consts import AllFileConsts
+
 from .core_texts import gitignore
 from .core_texts import gitignore as new_gitignore

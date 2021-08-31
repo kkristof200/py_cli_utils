@@ -1,3 +1,12 @@
+# ------------------------------------------------------------ Imports ----------------------------------------------------------- #
+
+# Local
+from .texts.all_file_consts import AllFileConsts
+
+# -------------------------------------------------------------------------------------------------------------------------------- #
+
+
+
 # ------------------------------------------------------- class: Constants ------------------------------------------------------- #
 
 class Constants:
@@ -13,10 +22,10 @@ class Constants:
     DEFAULT_COMMIT_MESSAGE           = 'Update'
     DEFAULT_SPACES_PER_TAB           = 4
     DEFAULT_COMMENT_LINE_LENGTH      = 140
-    COMMENT_LINE_FILLER_CHAR         = '-'
     PYTHON_VERSIONS                  = ['3.4', '3.5', '3.6', '3.7', '3.8', '3.9']
     ALLOWED_EXPENSIONS_TO_CLEAN      = ['.py', '.ts', '.js']
     IGNORED_PATH_COMPONENTS_TO_CLEAN = ['node_modules']
+    SUPPORTED_FILE_CONSTS            = [e.value for e in AllFileConsts.all()]
 
 
 # -------------------------------------------------------------------------------------------------------------------------------- #

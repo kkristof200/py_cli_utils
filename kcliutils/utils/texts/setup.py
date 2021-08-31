@@ -12,6 +12,7 @@ from kcu import strings, strio
 from .core_texts import setup
 from .utils import multi_replace
 from .file_key import FileKey
+from .all_file_consts import AllFileConsts
 
 # -------------------------------------------------------------------------------------------------------------------------------- #
 
@@ -72,7 +73,7 @@ def new_setup(
 
     return multi_replace(
         setup,
-        {
+        keys_vals={
             FileKey.PACKAGE_NAME: package_name,
             FileKey.AUTHOR: author or '',
             FileKey.GIT_URL: git_url or '',
@@ -82,7 +83,8 @@ def new_setup(
             FileKey.PYTHON_CLASSIFIERS: __get_python_classifiers(min_python_version, max_python_version, tab_size, license_str),
             FileKey.MIN_PYTHON_VERSION: min_python_version,
         },
-        tab_size=tab_size
+        tab_size=tab_size,
+        file_consts=AllFileConsts.PY
     )
 
 

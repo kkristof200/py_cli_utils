@@ -12,6 +12,7 @@ from kcu import strings
 from .core_texts import readme
 from .utils import multi_replace
 from .file_key import FileKey
+from .all_file_consts import AllFileConsts
 
 # -------------------------------------------------------------------------------------------------------------------------------- #
 
@@ -60,7 +61,7 @@ def new_readme(
 ) -> str:
     return multi_replace(
         readme,
-        {
+        keys_vals={
             FileKey.PACKAGE_NAME: package_name,
             FileKey.SHIELDS: __create_shields(package_name, full_repo_name) if full_repo_name else '',
             FileKey.DESCRIPTION: description or '',
@@ -70,7 +71,8 @@ def new_readme(
                     for d in dependencies
                 ]
             ) if dependencies else ''
-        }
+        },
+        file_consts=AllFileConsts.PY
     )
 
 

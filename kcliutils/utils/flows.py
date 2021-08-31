@@ -12,7 +12,7 @@ from kdependencies import Dependencies, InstalledPackage
 from .constants import Constants
 from .utils import Utils
 from .prompt import Prompt
-from .texts import new_api, new_class, new_json_class, new_enum, new_license, new_file, new_flow, gitignore, new_readme, updated_readme, new_setup, updated_setup, new_install_dependencies_file, current_version_number, new_requirements_file
+from .texts import new_api, new_class, new_json_class, new_enum, new_license, new_file, new_flow, gitignore, new_readme, updated_readme, new_setup, updated_setup, new_install_dependencies_file, current_version_number, new_requirements_file, AllFileConsts, FileConsts
 from .texts.utils import comment_line
 
 # -------------------------------------------------------------------------------------------------------------------------------- #
@@ -166,21 +166,30 @@ class Flows:
         line_len: Optional[str]
     ):
         new_command_line_len = int(line_len) if line_len else Utils.get_config(True).comment_line_length
+        allowed_extensions = [fc.file_extension for fc in Constants.SUPPORTED_FILE_CONSTS]
 
-        for p in kpath.file_paths_from_folder(os.getcwd(), allowed_extensions=['.py']):
+        for p in kpath.file_paths_from_folder(os.getcwd(), allowed_extensions=allowed_extensions):
+            file_consts = AllFileConsts.PY.value
+
+            for fc in Constants.SUPPORTED_FILE_CONSTS:
+                if fc.is_kind(p):
+                    file_consts = fc
+
+                    break
+
             s = strio.load_sync(p)
 
             for line in s.split('\n'):
                 indent_spaces = len(line) - len(line.lstrip())
                 line = line.strip()
 
-                if line.startswith('# {}'.format(Constants.COMMENT_LINE_FILLER_CHAR)):
-                    comment = line.replace('#', '').replace(Constants.COMMENT_LINE_FILLER_CHAR, '').strip()
+                if file_consts.is_comment_line(line):
+                    comment = line.strip().lstrip(file_consts.comment_starter).rstrip(file_consts.comment_ender).strip().strip(file_consts.comment_line_char).strip()
 
                     s = s.replace(line, comment_line(
                         comment,
                         line_len=new_command_line_len,
-                        filler_char=Constants.COMMENT_LINE_FILLER_CHAR,
+                        file_consts=file_consts,
                         tabs=1,
                         tab_size=indent_spaces
                     ))
