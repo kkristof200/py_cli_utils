@@ -68,6 +68,9 @@ def comment_line(
     tab_size: Optional[int] = None
 ) -> str:
     import math
+    
+    if isinstance(file_consts, Enum):
+        file_consts = file_consts.value
 
     filler_char = file_consts.comment_line_char
     filler_char = filler_char if len(filler_char) == 1 else filler_char[0]
