@@ -72,7 +72,7 @@ def new_readme(
                 ]
             ) if dependencies else ''
         },
-        file_consts=AllFileConsts.PY
+        file_consts=AllFileConsts.PY.value
     )
 
 

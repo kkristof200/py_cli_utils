@@ -20,16 +20,17 @@ def new_class(
 ) -> str:
     return multi_replace(
         class_,
-        {
+        keys_vals={
             FileKey.CLASS_NAME: class_name,
             FileKey.COMMENT_LINE_CLASS_NAME: comment_line(
                 FileValue.COMMENT_LINE_CLASS_NAME.value.format(class_name),
                 line_len=comment_line_len,
-                file_consts=AllFileConsts.PY
+                file_consts=AllFileConsts.PY.value
             )
         },
         tab_size=tab_size,
-        comment_line_len=comment_line_len
+        comment_line_len=comment_line_len,
+        file_consts=AllFileConsts.PY.value
     )
 
 

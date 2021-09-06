@@ -22,7 +22,7 @@ def new_license(author_name: str) -> str:
             FileKey.YEAR: datetime.utcnow().year,
             FileKey.AUTHOR_NAME: author_name
         },
-        file_consts=AllFileConsts.PY
+        file_consts=AllFileConsts.PY.value
     )
 
 # -------------------------------------------------------------------------------------------------------------------------------- #

@@ -34,9 +34,9 @@ def multi_replace(
             FileKey.COMMENT_LINE_PRIVATE_METHODS:      comment_line(FileValue.COMMENT_LINE_PRIVATE_METHODS, comment_line_len, file_consts, tabs=1, tab_size=tab_size),
             FileKey.COMMENT_LINE_IMPORTS:              comment_line(FileValue.COMMENT_LINE_IMPORTS, comment_line_len, file_consts),
             FileKey.COMMENT_LINE_PUBLIC_VARS:          comment_line(FileValue.COMMENT_LINE_PUBLIC_VARS, comment_line_len, file_consts),
-            FileKey.COMMENT_LINE_FILE_PUBLIC_METHODS:  comment_line(FileValue.COMMENT_LINE_PRIVATE_VARS, comment_line_len, file_consts),
+            FileKey.COMMENT_LINE_FILE_PUBLIC_METHODS:  comment_line(FileValue.COMMENT_LINE_PUBLIC_METHODS, comment_line_len, file_consts),
             FileKey.COMMENT_LINE_PRIVATE_VARS:         comment_line(FileValue.COMMENT_LINE_PRIVATE_VARS, comment_line_len, file_consts),
-            FileKey.COMMENT_LINE_FILE_PRIVATE_METHODS: comment_line(FileValue.COMMENT_LINE_PRIVATE_VARS, comment_line_len, file_consts),
+            FileKey.COMMENT_LINE_FILE_PRIVATE_METHODS: comment_line(FileValue.COMMENT_LINE_PRIVATE_METHODS, comment_line_len, file_consts),
             FileKey.COMMENT_LINE_METHODS:              comment_line(FileValue.COMMENT_LINE_METHODS, comment_line_len, file_consts),
             FileKey.COMMENT_LINE_PATHS:                comment_line(FileValue.COMMENT_LINE_PATHS, comment_line_len, file_consts),
             FileKey.COMMENT_LINE_VARS:                 comment_line(FileValue.COMMENT_LINE_VARS, comment_line_len, file_consts),
@@ -68,9 +68,6 @@ def comment_line(
     tab_size: Optional[int] = None
 ) -> str:
     import math
-    
-    if isinstance(file_consts, Enum):
-        file_consts = file_consts.value
 
     filler_char = file_consts.comment_line_char
     filler_char = filler_char if len(filler_char) == 1 else filler_char[0]

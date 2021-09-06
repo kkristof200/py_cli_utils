@@ -25,17 +25,18 @@ def new_json_class(
 ) -> str:
     return multi_replace(
         json_class,
-        {
+        keys_vals={
             FileKey.CLASS_NAME: class_name,
             FileKey.COMMENT_LINE_CLASS_NAME: comment_line(
                 FileValue.COMMENT_LINE_CLASS_NAME.value.format(class_name),
                 line_len=comment_line_len,
-                file_consts=AllFileConsts.PY
+                file_consts=AllFileConsts.PY.value
             ),
             FileKey.INIT_JSON_VARS: __init_vars_str(d, tab_size=tab_size)
         },
         tab_size=tab_size,
-        comment_line_len=comment_line_len
+        comment_line_len=comment_line_len,
+        file_consts=AllFileConsts.PY.value
     )
 
 

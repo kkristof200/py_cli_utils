@@ -1,6 +1,7 @@
 # ------------------------------------------------------------ Imports ----------------------------------------------------------- #
 
 # Local
+from kcliutils.utils.texts import file
 from .core_texts import api
 from .utils import comment_line, multi_replace
 from .file_key import FileKey
@@ -20,16 +21,17 @@ def new_api(
 ) -> str:
     return multi_replace(
         api,
-        {
+        keys_vals={
             FileKey.CLASS_NAME: class_name,
             FileKey.COMMENT_LINE_CLASS_NAME: comment_line(
                 FileValue.COMMENT_LINE_CLASS_NAME.value.format(class_name),
                 line_len=comment_line_len,
-                file_consts=AllFileConsts.PY
+                file_consts=AllFileConsts.PY.value
             )
         },
         tab_size=tab_size,
-        comment_line_len=comment_line_len
+        comment_line_len=comment_line_len,
+        file_consts=AllFileConsts.PY.value
     )
 
 

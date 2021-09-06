@@ -19,7 +19,7 @@ def new_flow(
         flow,
         tab_size=tab_size,
         comment_line_len=comment_line_len,
-        file_consts=AllFileConsts.PY
+        file_consts=AllFileConsts.PY.value
     )
 
 

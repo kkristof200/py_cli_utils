@@ -84,7 +84,7 @@ def new_setup(
             FileKey.MIN_PYTHON_VERSION: min_python_version,
         },
         tab_size=tab_size,
-        file_consts=AllFileConsts.PY
+        file_consts=AllFileConsts.PY.value
     )
 
 
